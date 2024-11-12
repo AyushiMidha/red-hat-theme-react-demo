@@ -1,35 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import ReactDOM  from "react-dom/client";
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
+import './App.scss'
+import HomePage from './views/Homepage/HomePage'
+import PfButton from "./components/Button/Button";
+import PfBreadcrumb from "./components/BreadCrumb/BreadCrumb";
+import PfForm from "./components/Form/Form";
+import PfAccordion from "./components/Accordion/Accordion";
+import PfCard from "./components/Card/Card";
+import { Page } from "@patternfly/react-core";
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Page className="app">
+       <header>Patternfly 6 Hackday</header>
+      <Outlet />
+    </Page>
   )
 }
 
-export default App
+const AppRoutes = createBrowserRouter([{
+  path: '/',
+  element: <App/>,
+  children:[
+    {
+      path: "/",
+      element: <HomePage/>
+    },
+    {
+      path: "/button",
+      element: <PfButton/>
+    },
+    {
+      path: "/breadcrumb",
+      element: <PfBreadcrumb/>
+    },
+    {
+      path: "/form",
+      element: <PfForm/>
+    },
+    {
+      path: "/accordion",
+      element: <PfAccordion/>
+    },
+    {
+      path: "/card",
+      element: <PfCard/>
+    }
+  ]
+}])
+
+const root= ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+
+root.render(<RouterProvider router={AppRoutes}/>)
