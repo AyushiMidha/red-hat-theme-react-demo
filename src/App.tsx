@@ -8,6 +8,7 @@ import PfForm from "./components/Form/Form";
 import PfAccordion from "./components/Accordion/Accordion";
 import PfCard from "./components/Card/Card";
 import { Page } from "@patternfly/react-core";
+import 'rhds-theme/dist/rhds-theme.css';
 
 function App() {
 
