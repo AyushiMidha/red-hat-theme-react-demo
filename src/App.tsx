@@ -7,16 +7,15 @@ import PfBreadcrumb from "./components/BreadCrumb/BreadCrumb";
 import PfForm from "./components/Form/Form";
 import PfAccordion from "./components/Accordion/Accordion";
 import PfCard from "./components/Card/Card";
-import { Page } from "@patternfly/react-core";
 import 'rhds-theme/dist/rhds-theme.css';
 
 function App() {
 
   return (
-    <Page className="app">
-       <header>Patternfly 6 Hackday</header>
+    <div className="app">
+      
       <Outlet />
-    </Page>
+    </div>
   )
 }
 

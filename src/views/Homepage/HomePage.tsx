@@ -1,6 +1,7 @@
 import { Card, CardTitle, Page,Title } from "@patternfly/react-core";
 import { FC } from "react";
 import { Link } from "react-router-dom";
+import PfForm from "../../components/Form/Form";
 
 
 const allComponents = [
@@ -28,14 +29,7 @@ const allComponents = [
 
 const HomePage:FC=()=>{
     return (<>
-        <Title headingLevel="h1">All Components</Title>
-        {allComponents.map((component)=>
-            <Link to={component.path}>
-                <Card>
-                    <CardTitle>{component.title}</CardTitle>
-                </Card>
-            </Link>
-        )}
+        <PfForm></PfForm>
     </>)
 }
 
