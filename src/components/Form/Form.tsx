@@ -12,13 +12,27 @@ import {
   FormHelperText,
   Card,
   CardBody,
-  CardTitle
+  CardTitle,
+  FormSelect,
+  FormSelectOption
 } from '@patternfly/react-core';
 
 const PfForm: FC = () => {
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [phone, setPhone] = React.useState('');
+  const [formValue, setFormValue] = React.useState('');
+
+  const onChange = (_event: React.FormEvent<HTMLSelectElement>, value: string) => {
+    setFormValue(value);
+  };
+
+  const options = [
+    { value: '', label: 'Select a number', disabled: false, isPlaceholder: true },
+    { value: '1', label: 'One', disabled: false, isPlaceholder: false },
+    { value: '2', label: 'Two', disabled: false, isPlaceholder: false },
+    { value: '3', label: 'Three - the only valid option', disabled: false, isPlaceholder: false }
+  ];
 
   const handleNameChange = (_event:FormEvent<HTMLInputElement>, name: string) => {
     setName(name);
@@ -77,15 +91,23 @@ const PfForm: FC = () => {
             onChange={handlePhoneChange}
           />
         </FormGroup>
-        <FormGroup role="group" isInline fieldId="basic-form-checkbox-group" label="How can we contact you?">
-          <Checkbox label="Email" aria-label="Email" id="inlinecheck01" />
-          <Checkbox label="Phone" aria-label="Phone" id="inlinecheck02" />
-          <Checkbox label="Mail" aria-label="Mail" id="inlinecheck03" />
-        </FormGroup>
-        <FormGroup role="radiogroup" isInline fieldId="basic-form-radio-group" label="Time zone">
-          <Radio name="basic-inline-radio" label="Eastern" id="basic-inline-radio-01" />
-          <Radio name="basic-inline-radio" label="Central" id="basic-inline-radio-02" />
-          <Radio name="basic-inline-radio" label="Pacific" id="basic-inline-radio-03" />
+        <FormGroup label="Selection:" type="string" fieldId="selection">
+        <FormSelect
+          id="selection"
+          value={formValue}
+          onChange={onChange}
+          aria-label="FormSelect Input"
+        >
+          {options.map((option, index) => (
+            <FormSelectOption
+              isDisabled={option.disabled}
+              key={index}
+              value={option.value}
+              label={option.label}
+              isPlaceholder={option.isPlaceholder}
+            />
+          ))}
+        </FormSelect>
         </FormGroup>
         <ActionGroup>
           <Button variant="primary">Submit</Button>
