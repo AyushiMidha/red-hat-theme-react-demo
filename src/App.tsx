@@ -7,7 +7,7 @@ import PfBreadcrumb from "./components/BreadCrumb/BreadCrumb";
 import PfForm from "./components/Form/Form";
 import PfAccordion from "./components/Accordion/Accordion";
 import PfCard from "./components/Card/Card";
-import 'rhds-theme/dist/rhds-theme.css';
+import './rhds-theme.css';
 
 function App() {
 
