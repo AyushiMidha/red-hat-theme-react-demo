@@ -3,7 +3,7 @@
  * 
  * @license Copyright (c) 2022 Red Hat UX MIT License
  */
-:root {
+ :root {
   --rh-animation-speed: 0.3s;
   --rh-animation-timing: cubic-bezier(0.465, 0.183, 0.153, 0.946);
   /* 1px border width; Example: Secondary CTA or Button */
@@ -734,31 +734,133 @@
   --rh-space-6xl: 96px;
   /* 128px spacer */
   --rh-space-7xl: 128px;
-
-  --pf-t--global--border--radius--500: var(--rh-border-radius-default, 3px);
-  --pf-t--global--border--radius--300: var(--rh-border-radius-default, 3px);
-  --pf-t--global--border--radius--200: var(--rh-border-radius-sharp, 0.0px);
 }
-/* .pf-v6-c-button {
-  --pf-v6-c-button--BorderRadius: var(--rh-border-radius-default, 3px);
-} */
 
 .pf-v6-c-card {
   --pf-v6-c-card--BorderRadius: var(--rh-border-radius-default, 3px);
 }
 
+.pf-v6-c-banner {
+  --pf-v6-c-banner--BackgroundColor: #4f5255;
+}
+
+.pf-v6-c-banner.pf-m-red {
+  --pf-v6-c-banner--m-red--BackgroundColor: #c9190b;
+}
+
+.pf-v6-c-banner.pf-m-blue {
+  --pf-v6-c-banner--m-blue--BackgroundColor: #7dc3e8;
+}
+
+.pf-v6-c-banner.pf-m-green {
+  --pf-v6-c-banner--m-green--BackgroundColor: #3e8635;
+}
+
+.pf-v6-c-banner.pf-m-yellow {
+  --pf-v6-c-banner--m-yellow--BackgroundColor: #f0ab00;
+}
+
+.pf-v6-c-banner.pf-m-danger {
+  --pf-v6-c-banner--m-danger--BackgroundColor: #c9190b;
+}
+
+.pf-v6-c-banner.pf-m-info {
+  --pf-v6-c-banner--m-info--BackgroundColor: #7dc3e8;
+}
+
+.pf-v6-c-banner.pf-m-success {
+  --pf-v6-c-banner--m-success--BackgroundColor: #3e8635;
+}
+
+.pf-v6-c-banner.pf-m-warning {
+  --pf-v6-c-banner--m-warning--BackgroundColor: #f0ab00;
+}
+
+.pf-v6-c-button {
+  --pf-v6-c-button--BorderRadius: var(--rh-border-radius-default, 3px);
+}
+
+.pf-v6-c-multiple-file-upload {
+  --pf-v6-c-multiple-file-upload__main--BorderRadius: var(--rh-border-radius-sharp, 0px);
+}
+
+.pf-v6-c-file-upload {
+  --pf-v6-c-file-upload--RowGap: 0px;
+}
+.pf-v6-c-file-upload .pf-v6-c-input-group {
+  --pf-v6-c-input-group--Gap: 0px;
+}
+.pf-v6-c-file-upload .pf-v6-c-input-group .pf-v6-c-input-group__item {
+  --pf-v6-c-input-group__item--AlignItems: normal;
+}
+.pf-v6-c-file-upload .pf-v6-c-input-group .pf-v6-c-input-group__item .pf-v6-c-button.pf-m-control {
+  --pf-v6-c-button--m-control--BorderColor: #f0f0f0;
+  border-bottom: var(--rh-border-width-sm) solid #8a8d90;
+}
+.pf-v6-c-file-upload .pf-v6-c-input-group .pf-v6-c-input-group__item .pf-v6-c-button:disabled, .pf-v6-c-file-upload .pf-v6-c-input-group .pf-v6-c-input-group__item .pf-v6-c-button.pf-m-disabled, .pf-v6-c-file-upload .pf-v6-c-input-group .pf-v6-c-input-group__item .pf-v6-c-button.pf-m-aria-disabled {
+  --pf-v6-c-button--disabled--Color: #6a6e73;
+  --pf-v6-c-button--disabled--BackgroundColor: #f0f0f0;
+  border-left: none;
+  border-bottom: var(--rh-border-width-sm) solid #f0f0f0;
+}
+
+.pf-v6-c-divider {
+  --pf-v6-c-divider--Color: #d2d2d2;
+}
+
+.pf-v6-c-draggable {
+  --pf-v6-c-draggable--m-dragging--after--BorderRadius: var(--rh-border-radius-sharp, 0px);
+  --pf-v6-c-droppable--m-dragging--after--BorderRadius: var(--rh-border-radius-sharp, 0px);
+}
+
+.pf-v6-c-dual-list-selector {
+  --pf-v6-c-dual-list-selector__menu--BorderRadius: var(--rh-border-radius-sharp, 0px);
+}
+
 .pf-v6-c-form-control {
-  /* --pf-v6-c-form-control--BorderRadius: var(--rh-border-radius-sharp, 0.0px); */
+  --pf-v6-c-form-control--BorderRadius: var(--rh-border-radius-sharp, 0px);
+  --pf-v6-c-form-control--after--BorderStyle: none;
   --pf-v6-c-form-control--before--BorderStyle: none;
-  border: 1px solid;
+  border: var(--rh-border-width-sm) solid;
   border-color: #f0f0f0 #f0f0f0 #8a8d90 #f0f0f0;
 }
-
-.pf-v6-c-menu-toggle {
-  /* --pf-v6-c-menu-toggle--BorderRadius: var(--rh-border-radius-sharp, 0.0px); */
-  --pf-v6-c-menu-toggle--BorderColor: transparent;
-  border: 1px solid;
-  border-color: #f0f0f0 #f0f0f0 #8a8d90 #f0f0f0;
+.pf-v6-c-form-control:hover {
+  border-bottom-color: var(--rh-color-accent-base-on-light);
 }
 
+.pf-v6-c-form-control.pf-m-readonly {
+  --pf-v6-c-form-control--BackgroundColor: #f0f0f0;
+}
 
+.pf-v6-c-form-control.pf-m-error {
+  border-bottom: var(--rh-border-width-md) solid var(--rh-color-border-status-danger-on-light);
+}
+
+.pf-v6-c-form-control.pf-m-expanded {
+  border-bottom: var(--rh-border-width-md) solid var(--rh-color-accent-base-on-light);
+}
+
+.pf-v6-c-form-control.pf-m-success {
+  border-bottom: var(--rh-border-width-md) solid var(--rh-color-border-status-success-on-light);
+}
+
+.pf-v6-c-form-control.pf-m-warning {
+  border-bottom: var(--rh-border-width-md) solid var(--rh-color-border-status-warning-on-light);
+}
+
+:root {
+  --pf-t--global--text--color--nonstatus--on-gray--default: var(--rh-color-canvas-white);
+  --pf-t--global--text--color--nonstatus--on-red--default: var(--rh-color-canvas-white);
+  --pf-t--global--text--color--nonstatus--on-green--default: var(--rh-color-canvas-white);
+  --pf-t--global--text--color--status--on-info--default: var(--rh-color-black);
+  --pf-t--global--color--nonstatus--gray--100: #4f5255;
+  --pf-t--global--color--nonstatus--blue--100: #7dc3e8;
+  --pf-t--global--color--nonstatus--red--100: #c9190b;
+  --pf-t--global--color--nonstatus--green--100: #3e8635;
+  --pf-t--global--color--nonstatus--yellow--100: #f0ab00;
+  --pf-t--global--border--radius--500: var(--rh-border-radius-default, 3px);
+  --pf-t--global--border--radius--300: var(--rh-border-radius-sharp, 0px);
+  --pf-t--global--border--color--100: #d2d2d2;
+  --pf-t--global--border--radius--200: var(--rh-border-radius-sharp, 0px);
+  --pf-t--global--border--radius--200: var(--rh-border-radius-sharp, 0px);
+}
