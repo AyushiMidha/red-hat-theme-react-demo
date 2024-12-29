@@ -737,7 +737,7 @@
 }
 
 .pf-v6-c-card {
-  --pf-v6-c-card--BorderRadius: var(--rh-border-radius-default, 3px);
+  --pf-v6-c-card--BorderRadius: var(--rh-border-radius-sharp, 3px);
 }
 
 .pf-v6-c-banner {
@@ -848,19 +848,118 @@
   border-bottom: var(--rh-border-width-md) solid var(--rh-color-border-status-warning-on-light);
 }
 
+.pf-v6-c-hint {
+  --pf-v6-c-button--BorderRadius: var(--rh-border-radius-default, 3px);
+  border: var(--rh-border-width-sm) solid #bee1f4;
+  --pf-v6-c-hint--BackgroundColor: #def3ff;
+  --pf-v6-c-hint--BorderRadius: 0px;
+  box-shadow: 0 0.0625rem 0.125rem 0 rgba(3, 3, 3, 0.12), 0 0 0.125rem 0 rgba(3, 3, 3, 0.06);
+}
+
+.pf-v6-c-label {
+  --pf-v6-c-label--m-filled__actions--c-button__icon--Color: #6a6e73;
+}
+
+.pf-v6-c-label {
+  --pf-v6-c-label--BorderColor: #d2d2d2;
+  --pf-v6-c-label--BackgroundColor: #f5f5f5;
+  --pf-v6-c-label--Color: #151515;
+  --pf-v6-c-label__icon--Color: #151515;
+  border: 1px solid #d2d2d2;
+}
+
+.pf-v6-c-label.pf-m-blue {
+  --pf-v6-c-label--BorderColor: #bee1f4;
+  --pf-v6-c-label--BackgroundColor: #def3ff;
+  --pf-v6-c-label--Color: #002952;
+  --pf-v6-c-label__icon--Color: #0066cc;
+  border: 1px solid #bee1f4;
+}
+
+.pf-v6-c-label.pf-m-green {
+  --pf-v6-c-label--BorderColor: #bde5b8;
+  --pf-v6-c-label--BackgroundColor: #f3faf2;
+  --pf-v6-c-label--Color: #1e4f18;
+  --pf-v6-c-label__icon--Color: #3e8635;
+  border: 1px solid #bde5b8;
+}
+
+.pf-v6-c-label.pf-m-orange {
+  --pf-v6-c-label--BorderColor: #f4b678;
+  --pf-v6-c-label--BackgroundColor: #fff6ec;
+  --pf-v6-c-label--Color: #3b1f00;
+  --pf-v6-c-label__icon--Color: #ec7a08;
+  border: 1px solid #f4b678;
+}
+
+.pf-v6-c-label.pf-m-red {
+  --pf-v6-c-label--BorderColor: #c9190b;
+  --pf-v6-c-label--BackgroundColor: #faeae8;
+  --pf-v6-c-label--Color: #7d1007;
+  --pf-v6-c-label__icon--Color: #c9190b;
+  border: 1px solid #c9190b;
+}
+
+.pf-v6-c-label.pf-m-teal {
+  --pf-v6-c-label--BorderColor: #a2d9d9;
+  --pf-v6-c-label--BackgroundColor: #f2f9f9;
+  --pf-v6-c-label--Color: #003737;
+  --pf-v6-c-label__icon--Color: #009596;
+  border: 1px solid #a2d9d9;
+}
+
+.pf-v6-c-label.pf-m-purple {
+  --pf-v6-c-label--BorderColor: #cbc1ff;
+  --pf-v6-c-label--BackgroundColor: #f2f0fc;
+  --pf-v6-c-label--Color: #1f0066;
+  --pf-v6-c-label__icon--Color: #6753ac;
+  border: 1px solid #cbc1ff;
+}
+
+.pf-v6-c-label.pf-m-yellow {
+  --pf-v6-c-label--BorderColor: #f9e0a2;
+  --pf-v6-c-label--BackgroundColor: #fdf7e7;
+  --pf-v6-c-label--Color: #3d2c00;
+  --pf-v6-c-label__icon--Color: #f0ab00;
+  border: 1px solid #f9e0a2;
+}
+
+.pf-v6-c-label.pf-m-disabled {
+  --pf-v6-c-label--BorderColor: transparent;
+  --pf-v6-c-label--BackgroundColor: #d2d2d2;
+  --pf-v6-c-label--Color: #6a6e73;
+  --pf-v6-c-label__icon--Color: #6a6e73;
+  border: 1px solid transparent;
+}
+
+.pf-v6-c-alert {
+  --pf-v6-c-alert--BorderRadius: var(--rh-border-radius-sharp, 0);
+  border-right: var(--rh-border-radius-sharp, 0);
+  border-left: var(--rh-border-radius-sharp, 0);
+  border-bottom: var(--rh-border-radius-sharp, 0);
+}
+
+.pf-v6-c-accordion__item.pf-m-expanded {
+  --pf-v6-c-accordion__item--m-expanded--BackgroundColor: var(--rh-color-surface-lightest, #ffffff);
+  --pf-v6-c-accordion__item--BorderRadius: var(--rh-border-radius-sharp, 0);
+  --pf-v6-c-accordion__toggle--BackgroundColor: var(--rh-color-surface-lightest, #ffffff);
+  border-left: 3px solid var(--rh-color-accent-brand-on-light, #ee0000);
+}
+
+.pf-v6-c-button:hover, .pf-v6-c-button:focus {
+  --pf-v6-c-button--BackgroundColor: transparent;
+}
+
 :root {
-  --pf-t--global--text--color--nonstatus--on-gray--default: var(--rh-color-canvas-white);
-  --pf-t--global--text--color--nonstatus--on-red--default: var(--rh-color-canvas-white);
-  --pf-t--global--text--color--nonstatus--on-green--default: var(--rh-color-canvas-white);
-  --pf-t--global--text--color--status--on-info--default: var(--rh-color-black);
-  --pf-t--global--color--nonstatus--gray--100: #4f5255;
-  --pf-t--global--color--nonstatus--blue--100: #7dc3e8;
-  --pf-t--global--color--nonstatus--red--100: #c9190b;
-  --pf-t--global--color--nonstatus--green--100: #3e8635;
-  --pf-t--global--color--nonstatus--yellow--100: #f0ab00;
-  --pf-t--global--border--radius--500: var(--rh-border-radius-default, 3px);
   --pf-t--global--border--radius--300: var(--rh-border-radius-sharp, 0px);
   --pf-t--global--border--color--100: #d2d2d2;
   --pf-t--global--border--radius--200: var(--rh-border-radius-sharp, 0px);
   --pf-t--global--border--radius--200: var(--rh-border-radius-sharp, 0px);
+  --pf-t--global--border--radius--medium: var(--rh-border-radius-sharp, 0);
+  --pf-t--global--border--radius--200: var(--rh-border-radius-sharp, 0);
+  --pf-t--global--background--color--600: var(--rh-color-surface-lightest, #ffffff);
+  --pf-t--global--border--radius--200: var(--rh-border-radius-sharp, 0);
+  --pf-t--global--background--color--action--plain--default: var(--rh-color-surface-lightest, #ffffff);
+  --pf-t--global--border--radius--300: var(--rh-border-radius-sharp, 3px);
+  --pf-t--global--background--color--600: transparent;
 }
