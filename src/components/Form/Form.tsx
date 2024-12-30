@@ -44,7 +44,10 @@ import {
    Hint,
    HintBody,
    HintFooter,
-   Label
+   Label,
+   Nav, NavItem, NavList,
+   NotificationBadge, NotificationBadgeVariant,
+   NumberInput
 } from '@patternfly/react-core';
 import TimesIcon from '@patternfly/react-icons/dist/esm/icons/times-icon';
 import PlusCircleIcon from '@patternfly/react-icons/dist/esm/icons/plus-circle-icon';
@@ -117,6 +120,26 @@ const PfForm: React.FunctionComponent = () => {
   const [filename, setFilename] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
   const [formSelectValue, setFormSelectValue] = React.useState('mrs');
+
+  const [activeItem, setActiveItem] = React.useState(0);
+
+  const [readExpanded, setReadExpanded] = React.useState(false);
+  const [unreadExpanded, setUnreadExpanded] = React.useState(false);
+  const [attentionExpanded, setAttentionExpanded] = React.useState(false);
+
+  const onReadClick = () => {
+    setReadExpanded(!readExpanded);
+  };
+
+  const onUnreadClick = () => {
+    setUnreadExpanded(!unreadExpanded);
+  };
+
+  const onAttentionClick = () => {
+    setAttentionExpanded(!attentionExpanded);
+  };
+
+
 
   const onChange = (_event: React.FormEvent<HTMLSelectElement>, value: string) => {
     setFormSelectValue(value);
@@ -1322,6 +1345,51 @@ const PfForm: React.FunctionComponent = () => {
         <Label>Label that overflows its parent, but has no textMaxWidth on its own</Label>
       </div>
       <br />
+      <Nav  aria-label="Default global" ouiaId="DefaultNav">
+      <NavList>
+        <NavItem preventDefault id="nav-default-link1" to="#nav-default-link1" itemId={0} isActive={activeItem === 0}>
+          Default Link 1
+        </NavItem>
+        <NavItem preventDefault id="nav-default-link2" to="#nav-default-link2" itemId={1} isActive={activeItem === 1}>
+          Default Link 2
+        </NavItem>
+        <NavItem preventDefault id="nav-default-link3" to="#nav-default-link3" itemId={2} isActive={activeItem === 2}>
+          Default Link 3
+        </NavItem>
+        <NavItem preventDefault id="nav-default-link4" to="#nav-default-link4" itemId={3} isActive={activeItem === 3}>
+          Default Link 4
+        </NavItem>
+      </NavList>
+    </Nav>
+    <br></br>
+    <br></br>
+    <NotificationBadge
+        variant={NotificationBadgeVariant.read}
+        onClick={onReadClick}
+        aria-label="Basic notification badge with read variant"
+        isExpanded={readExpanded}
+      />
+      <NotificationBadge
+        variant={NotificationBadgeVariant.unread}
+        onClick={onUnreadClick}
+        aria-label="Basic notification badge with unread variant"
+        isExpanded={unreadExpanded}
+      />
+      <NotificationBadge
+        variant={NotificationBadgeVariant.attention}
+        onClick={onAttentionClick}
+        aria-label="Basic notification badge with attention variant"
+        isExpanded={attentionExpanded}
+      />
+      <br></br>
+      <br></br>
+      <br></br>
+      <NumberInput
+      inputName="input"
+      inputAriaLabel="number input"
+      minusBtnAriaLabel="minus"
+      plusBtnAriaLabel="plus"
+    />
     </>
     
   );

@@ -737,7 +737,7 @@
 }
 
 .pf-v6-c-card {
-  --pf-v6-c-card--BorderRadius: var(--rh-border-radius-sharp, 3px);
+  --pf-v6-c-card--BorderRadius: var(--rh-border-radius-default, 3px);
 }
 
 .pf-v6-c-banner {
@@ -793,6 +793,9 @@
 .pf-v6-c-file-upload .pf-v6-c-input-group .pf-v6-c-input-group__item {
   --pf-v6-c-input-group__item--AlignItems: normal;
 }
+.pf-v6-c-file-upload .pf-v6-c-input-group .pf-v6-c-input-group__item .pf-v6-c-button {
+  --pf-v6-c-button--m-control--BorderRadius: var(--rh-border-radius-sharp, 0px);
+}
 .pf-v6-c-file-upload .pf-v6-c-input-group .pf-v6-c-input-group__item .pf-v6-c-button.pf-m-control {
   --pf-v6-c-button--m-control--BorderColor: #f0f0f0;
   border-bottom: var(--rh-border-width-sm) solid #8a8d90;
@@ -802,6 +805,9 @@
   --pf-v6-c-button--disabled--BackgroundColor: #f0f0f0;
   border-left: none;
   border-bottom: var(--rh-border-width-sm) solid #f0f0f0;
+}
+.pf-v6-c-file-upload .pf-v6-c-input-group .pf-v6-c-input-group__item .pf-v6-c-form-control.pf-m-readonly {
+  --pf-v6-c-form-control--BackgroundColor: #f0f0f0;
 }
 
 .pf-v6-c-divider {
@@ -828,8 +834,8 @@
   border-bottom-color: var(--rh-color-accent-base-on-light);
 }
 
-.pf-v6-c-form-control.pf-m-readonly {
-  --pf-v6-c-form-control--BackgroundColor: #f0f0f0;
+.pf-v6-c-menu-toggle {
+  --pf-v6-c-menu-toggle--BorderRadius: var(--rh-border-radius-sharp, 0px);
 }
 
 .pf-v6-c-form-control.pf-m-error {
@@ -950,16 +956,59 @@
   --pf-v6-c-button--BackgroundColor: transparent;
 }
 
+.pf-v6-c-nav {
+  --pf-v6-c-nav--BackgroundColor: #212427;
+  --pf-v6-c-nav__link--BorderRadius: var(--rh-border-radius-sharp, 0px);
+}
+
+.pf-v6-c-nav__link {
+  --pf-v6-c-nav__link--m-current--BackgroundColor: #4f5255;
+  --pf-v6-c-nav__link--BackgroundColor: #212427;
+  --pf-v6-c-nav__link--Color: var(--rh-color-canvas-white, #ffffff);
+  --pf-v6-c-nav__link--m-current--Color: var(--rh-color-canvas-white, #ffffff);
+  border-bottom: 0.5px solid #4f5255;
+  margin: 0 var(--rh-space-lg, 16px);
+  position: relative;
+}
+.pf-v6-c-nav__link.pf-m-current::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: -webkit-fill-available;
+  background-color: #73bcf7;
+}
+
+.pf-v6-c-button.pf-m-stateful {
+  --pf-v6-c-button--m-stateful--BorderRadius: var(--rh-border-radius-default, 3px);
+  --pf-v6-c-button--BorderRadius: var(--rh-border-radius-default, 3px);
+}
+
+.pf-v6-c-number-input .pf-v6-c-input-group {
+  --pf-v6-c-input-group--Gap: 0px;
+}
+.pf-v6-c-number-input .pf-v6-c-input-group .pf-v6-c-input-group__item .pf-v6-c-button {
+  --pf-v6-c-button--m-control--BorderRadius: var(--rh-border-radius-sharp, 0px);
+  --pf-v6-c-button--BorderColor: transparent;
+  border: 1px solid #f0f0f0;
+  border-bottom: 1px solid #8a8d90;
+}
+.pf-v6-c-number-input .pf-v6-c-input-group .pf-v6-c-input-group__item .pf-v6-c-form-control.pf-m-readonly {
+  background-color: var(--rh-color-canvas-white, #ffffff);
+  border-top: var(--rh-border-width-sm, 1px) solid #f0f0f0;
+  border-right: none;
+  border-bottom: var(--rh-border-width-sm, 1px) solid #8a8d90;
+  border-left: none;
+}
+
 :root {
   --pf-t--global--border--radius--300: var(--rh-border-radius-sharp, 0px);
   --pf-t--global--border--color--100: #d2d2d2;
-  --pf-t--global--border--radius--200: var(--rh-border-radius-sharp, 0px);
-  --pf-t--global--border--radius--200: var(--rh-border-radius-sharp, 0px);
   --pf-t--global--border--radius--medium: var(--rh-border-radius-sharp, 0);
-  --pf-t--global--border--radius--200: var(--rh-border-radius-sharp, 0);
   --pf-t--global--background--color--600: var(--rh-color-surface-lightest, #ffffff);
-  --pf-t--global--border--radius--200: var(--rh-border-radius-sharp, 0);
   --pf-t--global--background--color--action--plain--default: var(--rh-color-surface-lightest, #ffffff);
-  --pf-t--global--border--radius--300: var(--rh-border-radius-sharp, 3px);
+  --pf-t--global--border--radius--300: var(--rh-border-radius-default, 3px);
   --pf-t--global--background--color--600: transparent;
 }
+
