@@ -952,10 +952,6 @@
   border-left: 3px solid var(--rh-color-accent-brand-on-light, #ee0000);
 }
 
-.pf-v6-c-button:hover, .pf-v6-c-button:focus {
-  --pf-v6-c-button--BackgroundColor: transparent;
-}
-
 .pf-v6-c-nav {
   --pf-v6-c-nav--BackgroundColor: #212427;
   --pf-v6-c-nav__link--BorderRadius: var(--rh-border-radius-sharp, 0px);
@@ -1002,13 +998,63 @@
   border-left: none;
 }
 
+.pf-v6-c-tooltip {
+  --pf-v6-c-tooltip__content--BorderRadius: var(--rh-border-radius-default, 3px);
+}
+
+.pf-v6-c-toggle-group {
+  --pf-v6-c-toggle-group__item--first-child__button--BorderStartStartRadius: var(--rh-border-radius-default, 3px);
+  --pf-v6-c-toggle-group__item--first-child__button--BorderEndStartRadius: var(--rh-border-radius-default, 3px);
+  --pf-v6-c-toggle-group__item--last-child__button--BorderStartEndRadius: var(--rh-border-radius-default, 3px);
+  --pf-v6-c-toggle-group__item--last-child__button--BorderEndEndRadius: var(--rh-border-radius-default, 3px);
+}
+
+.pf-v6-c-timestamp {
+  --pf-v6-c-timestamp--Color: var(--rh-color-text-primary, #151515);
+  --pf-v6-c-timestamp--FontSize: var( --rh-font-size-body-text-md, 1rem) ;
+}
+
+.pf-v6-c-text-input-group {
+  --pf-v6-c-text-input-group__text--BorderRadius--base: var(--rh-border-radius-sharp, 0.0px);
+  --pf-v6-c-text-input-group__text--BorderStartStartRadius: var(--rh-border-radius-sharp, 0.0px);
+  --pf-v6-c-text-input-group__text--BorderStartEndRadius: var(--rh-border-radius-sharp, 0.0px);
+  --pf-v6-c-text-input-group__text--BorderEndEndRadius: var(--rh-border-radius-sharp, 0.0px);
+  --pf-v6-c-text-input-group__text--BorderEndStartRadius: var(--rh-border-radius-sharp, 0.0px);
+  --pf-v6-c-text-input-group__text-input--OutlineOffset: 0px;
+  --pf-v6-c-text-input-group__text-input--BackgroundColor: var(--rh-color-canvas-white, #ffffff);
+  border: 1px solid;
+  border-color: #f0f0f0 #f0f0f0 #8a8d90 #f0f0f0;
+}
+
+.pf-v6-c-wizard__nav-link.pf-m-current {
+  --pf-v6-c-wizard__nav-link--m-current--Color: var(--rh-color-accent-base-on-light, #0066cc);
+}
+
+.pf-v6-c-wizard__footer {
+  --pf-v6-c-wizard__footer--BorderBlockStartColor: transparent;
+}
+
+.pf-v6-c-form-control::before {
+  --pf-v6-c-form-control--before--BorderRadius: var(--rh-border-radius-sharp, 0);
+}
+
+.pf-v6-c-popover__content {
+  --pf-v6-c-popover__content--BorderRadius: var(--rh-border-radius-sharp, 0);
+}
+
+.pf-v6-c-skeleton {
+  --pf-v6-c-popover__content--BorderRadius: var(--rh-border-radius-sharp, 0);
+}
+
+.pf-v6-c-modal-box {
+  --pf-v6-c-modal-box--BorderRadius: var(--rh-border-radius-sharp, 0px);
+}
+
 :root {
-  --pf-t--global--border--radius--300: var(--rh-border-radius-sharp, 0px);
   --pf-t--global--border--color--100: #d2d2d2;
   --pf-t--global--border--radius--medium: var(--rh-border-radius-sharp, 0);
   --pf-t--global--background--color--600: var(--rh-color-surface-lightest, #ffffff);
   --pf-t--global--background--color--action--plain--default: var(--rh-color-surface-lightest, #ffffff);
-  --pf-t--global--border--radius--300: var(--rh-border-radius-default, 3px);
-  --pf-t--global--background--color--600: transparent;
+  --pf-t--global--border--radius--400: var(--rh-border-radius-default, 0px);
 }
 

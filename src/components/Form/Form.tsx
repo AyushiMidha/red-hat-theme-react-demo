@@ -23,8 +23,8 @@ import {
   MenuToggle,
   TextInputGroup,
   TextInputGroupMain,
-  TextInputGroupUtilities, 
-  Banner, 
+  TextInputGroupUtilities,
+  Banner,
   Divider,
   Flex,
   DualListSelector,
@@ -39,16 +39,34 @@ import {
   MultipleFileUploadStatusItem,
   FileUpload, DropEvent,
   FormSelect, FormSelectOption,
-  TextArea,ValidatedOptions,
-   FlexItem,
-   Hint,
-   HintBody,
-   HintFooter,
-   Label,
-   Nav, NavItem, NavList,
-   NotificationBadge, NotificationBadgeVariant,
-   NumberInput
+  TextArea, ValidatedOptions,
+  FlexItem,
+  Hint,
+  HintBody,
+  HintFooter,
+  Label,
+  Nav, NavItem, NavList,
+  NotificationBadge, NotificationBadgeVariant,
+  NumberInput,
+  NotificationDrawer,
+  NotificationDrawerBody,
+  NotificationDrawerHeader,
+  NotificationDrawerList,
+  NotificationDrawerListItem,
+  NotificationDrawerListItemBody,
+  NotificationDrawerListItemHeader,
+  Dropdown,
+  DropdownList,
+  DropdownItem,
+  MenuToggleElement,
+  Wizard, WizardStep,
+  Truncate,
+  Tooltip,
+  Toolbar, ToolbarItem, ToolbarContent,
+  SearchInput,
+  ToggleGroup, ToggleGroupItem,
 } from '@patternfly/react-core';
+import { Tile } from '@patternfly/react-core/deprecated';
 import TimesIcon from '@patternfly/react-icons/dist/esm/icons/times-icon';
 import PlusCircleIcon from '@patternfly/react-icons/dist/esm/icons/plus-circle-icon';
 import ExternalLinkSquareAltIcon from '@patternfly/react-icons/dist/esm/icons/external-link-square-alt-icon';
@@ -64,6 +82,7 @@ import ExclamationCircleIcon from '@patternfly/react-icons/dist/esm/icons/exclam
 import ExclamationTriangleIcon from '@patternfly/react-icons/dist/esm/icons/exclamation-triangle-icon';
 import InfoCircleIcon from '@patternfly/react-icons/dist/esm/icons/info-circle-icon';
 import CubeIcon from '@patternfly/react-icons/dist/esm/icons/cube-icon';
+import EllipsisVIcon from '@patternfly/react-icons/dist/esm/icons/ellipsis-v-icon';
 
 interface readFile {
   fileName: string;
@@ -126,6 +145,45 @@ const PfForm: React.FunctionComponent = () => {
   const [readExpanded, setReadExpanded] = React.useState(false);
   const [unreadExpanded, setUnreadExpanded] = React.useState(false);
   const [attentionExpanded, setAttentionExpanded] = React.useState(false);
+
+  const [isOpenMap, setIsOpenMap] = React.useState(new Array(7).fill(false));
+
+  const [isSelected, setIsSelected] = React.useState('');
+  const handleItemClick = (event, _isSelected: boolean) => {
+    const id = event.currentTarget.id;
+    setIsSelected(id);
+  };
+
+  const onToggle = (index: number) => () => {
+    const newState = [...isOpenMap.slice(0, index), !isOpenMap[index], ...isOpenMap.slice(index + 1)];
+    setIsOpenMap(newState);
+  };
+
+  // const onSelect = () => {
+  //   setIsOpenMap(new Array(7).fill(false));
+  // };
+
+  const onDrawerClose = (_event: React.MouseEvent<Element, MouseEvent> | KeyboardEvent) => {
+    setIsOpenMap(new Array(7).fill(false));
+  };
+
+  const [isOpen0, isOpen1, isOpen2, isOpen3, isOpen4, isOpen5, isOpen6] = isOpenMap;
+  const dropdownItems = (
+    <>
+      <DropdownItem>Action</DropdownItem>
+      <DropdownItem
+        to="#default-link2"
+        // Prevent the default onClick functionality for example purposes
+        onClick={(ev: any) => ev.preventDefault()}
+      >
+        Link
+      </DropdownItem>
+      <DropdownItem isDisabled>Disabled Action</DropdownItem>
+      <DropdownItem isDisabled to="#default-link4">
+        Disabled Link
+      </DropdownItem>
+    </>
+  );
 
   const onReadClick = () => {
     setReadExpanded(!readExpanded);
@@ -482,7 +540,7 @@ const PfForm: React.FunctionComponent = () => {
     textInputRef?.current?.focus();
   };
 
-  const toggle = (toggleRef:any) => (
+  const toggle = (toggleRef: any) => (
     <MenuToggle
       ref={toggleRef}
       variant="default"
@@ -491,161 +549,161 @@ const PfForm: React.FunctionComponent = () => {
       isExpanded={isOpen}
       isFullWidth
     >
-    
+
     </MenuToggle>
   );
   return (
     <>
-<Title headingLevel="h2">Login information</Title>
-<br/>
-    <Form isWidthLimited>
-      <FormGroup
-        label="Choose a Red Hat login"
-        isRequired
-        fieldId="simple-form-name-02"
-      >
-        <TextInput
+      <Title headingLevel="h2">Login information</Title>
+      <br />
+      <Form isWidthLimited>
+        <FormGroup
+          label="Choose a Red Hat login"
           isRequired
-          type="text"
-          id="simple-form-name-02"
-          name="simple-form-name-02"
-          aria-describedby="simple-form-name-02-helper"
-          value={""}
-          onChange={()=>{}}
-        />
-      
-          Your login is a user ID for accessing your account across all Red Hat sites. It must be at least 5 characters and <b>cannot be changed once created</b>.
-    
-      </FormGroup>
-      <FormGroup label={"Choose a password"} isRequired fieldId="pf-login-password-id">
-      <TextInput
-          isRequired
-          type="password"
-          id="simple-form-name-02"
-          name="simple-form-name-02"
-          aria-describedby="simple-form-name-02-helper"
-          value={""}
-          onChange={()=>{}}
-        />
-     <HelperText>
-      <HelperTextItem variant="indeterminate">Must be at least 14 characters: indeterminate status</HelperTextItem>
-    </HelperText>
-    <HelperText>
-      <HelperTextItem variant="indeterminate">Must include at least 3 of the following: lowercase letter, uppercase letters, numbers, symbols: indeterminate status</HelperTextItem>
-    </HelperText>
-    <HelperText>
-      <HelperTextItem variant="indeterminate">Must include at least 3 of the following: lowercase letter, uppercase letters, numbers, symbols: indeterminate status;
-      Cannot contain the word(s) "redhat" or "password"</HelperTextItem>
-    </HelperText>
-
-      </FormGroup>
-      <FormGroup label={"Confirm Password"} isRequired fieldId="pf-login-password-id">
-      <TextInput
-          isRequired
-          type="password"
-          id="simple-form-name-02"
-          name="simple-form-name-02"
-          aria-describedby="simple-form-name-02-helper"
-          value={''}
-          onChange={()=>{}}
-        />
-    
-      
-      </FormGroup>
-      <Title headingLevel='h3'> Personal Information</Title>
-<Grid hasGutter>
-  <GridItem span={6}>
-  <FormGroup
-        label="First Name"
-        isRequired
-        fieldId="simple-form-name-02"
-      >
-        <TextInput
-          isRequired
-          type="text"
-          id="simple-form-name-02"
-          name="simple-form-name-02"
-          aria-describedby="simple-form-name-02-helper"
-          value={""}
-          onChange={()=>{}}
-        />
-      </FormGroup>
-  </GridItem>
-  <GridItem span={6}>
-  <FormGroup
-        label="Last Name"
-        isRequired
-        fieldId="simple-form-name-02"
-      >
-        <TextInput
-          isRequired
-          type="text"
-          id="simple-form-name-02"
-          name="simple-form-name-02"
-          aria-describedby="simple-form-name-02-helper"
-          value={""}
-          onChange={()=>{}}
-        />
-      </FormGroup>
-  </GridItem>
-</Grid>
-
-
-<Grid hasGutter>
-  <GridItem span={8}>
-      <FormGroup label="Email" isRequired fieldId="simple-form-email-02">
-        <TextInput
-          isRequired
-          type="email"
-          id="simple-form-email-02"
-          name="simple-form-email-02"
-          value={""}
-          onChange={()=>{}}
-        />
-      </FormGroup>
-      </GridItem>
-      <GridItem span={4}>
-      <FormGroup label="Phone number" isRequired fieldId="simple-form-number">
-        <TextInput
-          isRequired
-          type="tel"
-          placeholder="555-555-5555"
-          id="simple-form-number"
-          name="simple-form-number"
-          value={""}
-          onChange={()=>{}}
-        />
-      </FormGroup>
-      </GridItem >
-
-      </Grid>
-      <FormGroup label="Department" isRequired>
-      <Select
-      id="typeahead-select"
-      isOpen={isOpen}
-      selected={selected}
-      onSelect={onSelect}
-      onOpenChange={(isOpen) => {
-        !isOpen && closeMenu();
-      }}
-      shouldFocusFirstItemOnOpen={false}
-      toggle={toggle}
-    >
-      <SelectList id="select-typeahead-listbox">
-        {selectOptions.map((option, index) => (
-          <SelectOption
-            key={option.value || option.children}
-            isFocused={focusedItemIndex === index}
-            className={option.className}
-            id={createItemId(option.value)}
-            {...option}
-            ref={null}
+          fieldId="simple-form-name-02"
+        >
+          <TextInput
+            isRequired
+            type="text"
+            id="simple-form-name-02"
+            name="simple-form-name-02"
+            aria-describedby="simple-form-name-02-helper"
+            value={""}
+            onChange={() => { }}
           />
-        ))}
-      </SelectList>
-    </Select>
-    </FormGroup>
-    {/* <FormGroup label="Job Role" isRequired>
+
+          Your login is a user ID for accessing your account across all Red Hat sites. It must be at least 5 characters and <b>cannot be changed once created</b>.
+
+        </FormGroup>
+        <FormGroup label={"Choose a password"} isRequired fieldId="pf-login-password-id">
+          <TextInput
+            isRequired
+            type="password"
+            id="simple-form-name-02"
+            name="simple-form-name-02"
+            aria-describedby="simple-form-name-02-helper"
+            value={""}
+            onChange={() => { }}
+          />
+          <HelperText>
+            <HelperTextItem variant="indeterminate">Must be at least 14 characters: indeterminate status</HelperTextItem>
+          </HelperText>
+          <HelperText>
+            <HelperTextItem variant="indeterminate">Must include at least 3 of the following: lowercase letter, uppercase letters, numbers, symbols: indeterminate status</HelperTextItem>
+          </HelperText>
+          <HelperText>
+            <HelperTextItem variant="indeterminate">Must include at least 3 of the following: lowercase letter, uppercase letters, numbers, symbols: indeterminate status;
+              Cannot contain the word(s) "redhat" or "password"</HelperTextItem>
+          </HelperText>
+
+        </FormGroup>
+        <FormGroup label={"Confirm Password"} isRequired fieldId="pf-login-password-id">
+          <TextInput
+            isRequired
+            type="password"
+            id="simple-form-name-02"
+            name="simple-form-name-02"
+            aria-describedby="simple-form-name-02-helper"
+            value={''}
+            onChange={() => { }}
+          />
+
+
+        </FormGroup>
+        <Title headingLevel='h3'> Personal Information</Title>
+        <Grid hasGutter>
+          <GridItem span={6}>
+            <FormGroup
+              label="First Name"
+              isRequired
+              fieldId="simple-form-name-02"
+            >
+              <TextInput
+                isRequired
+                type="text"
+                id="simple-form-name-02"
+                name="simple-form-name-02"
+                aria-describedby="simple-form-name-02-helper"
+                value={""}
+                onChange={() => { }}
+              />
+            </FormGroup>
+          </GridItem>
+          <GridItem span={6}>
+            <FormGroup
+              label="Last Name"
+              isRequired
+              fieldId="simple-form-name-02"
+            >
+              <TextInput
+                isRequired
+                type="text"
+                id="simple-form-name-02"
+                name="simple-form-name-02"
+                aria-describedby="simple-form-name-02-helper"
+                value={""}
+                onChange={() => { }}
+              />
+            </FormGroup>
+          </GridItem>
+        </Grid>
+
+
+        <Grid hasGutter>
+          <GridItem span={8}>
+            <FormGroup label="Email" isRequired fieldId="simple-form-email-02">
+              <TextInput
+                isRequired
+                type="email"
+                id="simple-form-email-02"
+                name="simple-form-email-02"
+                value={""}
+                onChange={() => { }}
+              />
+            </FormGroup>
+          </GridItem>
+          <GridItem span={4}>
+            <FormGroup label="Phone number" isRequired fieldId="simple-form-number">
+              <TextInput
+                isRequired
+                type="tel"
+                placeholder="555-555-5555"
+                id="simple-form-number"
+                name="simple-form-number"
+                value={""}
+                onChange={() => { }}
+              />
+            </FormGroup>
+          </GridItem >
+
+        </Grid>
+        <FormGroup label="Department" isRequired>
+          <Select
+            id="typeahead-select"
+            isOpen={isOpen}
+            selected={selected}
+            onSelect={onSelect}
+            onOpenChange={(isOpen) => {
+              !isOpen && closeMenu();
+            }}
+            shouldFocusFirstItemOnOpen={false}
+            toggle={toggle}
+          >
+            <SelectList id="select-typeahead-listbox">
+              {selectOptions.map((option, index) => (
+                <SelectOption
+                  key={option.value || option.children}
+                  isFocused={focusedItemIndex === index}
+                  className={option.className}
+                  id={createItemId(option.value)}
+                  {...option}
+                  ref={null}
+                />
+              ))}
+            </SelectList>
+          </Select>
+        </FormGroup>
+        {/* <FormGroup label="Job Role" isRequired>
       <Select
       id="typeahead-select"
       isOpen={isOpen}
@@ -671,340 +729,338 @@ const PfForm: React.FunctionComponent = () => {
       </SelectList>
     </Select>
     </FormGroup> */}
-      <Title headingLevel='h3'>Account type</Title>
+        <Title headingLevel='h3'>Account type</Title>
 
-    
-      <FormGroup role="radiogroup" isRequired fieldId="limit-width-form-radio-group" label="Choose account type">
-        <Radio name="limit-width-radio" label="Corporate" id="limit-width-inline-radio-01" description="Allows a set of users within your organization to centrally make purchases or administer systems" />
-  <br/>
-        <Radio name="limit-width-radio" label="Personal" id="limit-width-inline-radio-02" description="For purchasing or administering your own personal systems" />
-      </FormGroup>
-      <ActionGroup>
-        <Button variant="primary">Create my account</Button>
-        <Button variant="link">Back to login page</Button>
-      </ActionGroup>
-      <div>
-      <Banner>Default banner</Banner>
-        <br />
-        <Banner color="red">Red banner</Banner>
-        <br />
-        {/* <Banner color="orangered">Orangered banner</Banner> */}
-        {/* <Banner color="orange">Orange banner</Banner> */}
-        <Banner color="yellow">Yellow banner</Banner>
-        <br />
-        <Banner color="green">Green banner</Banner>
-        <br />
-        {/* <Banner color="teal">Teal banner</Banner> */}
-        <Banner color="blue">Blue banner</Banner>
-        <br />
-        {/* <Banner color="purple">Purple banner</Banner> */}
-      </div>
 
-      <Flex columnGap={{ default: 'columnGapSm' }}>
-      <Button variant="primary" ouiaId="Primary">
-        Primary
-      </Button>
-      <Button variant="secondary" ouiaId="Secondary">
-        Secondary
-      </Button>
-      <Button variant="secondary" ouiaId="DangerSecondary" isDanger>
-        Danger Secondary
-      </Button>
-      <Button variant="tertiary" ouiaId="Tertiary">
-        Tertiary
-      </Button>
-      <Button variant="danger" ouiaId="Danger">
-        Danger
-      </Button>
-      <Button variant="warning" ouiaId="Warning">
-        Warning
-      </Button>
-    </Flex>
-    <br />
-    <Flex columnGap={{ default: 'columnGapSm' }}>
-      <Button variant="link" icon={<PlusCircleIcon />}>
-        Link
-      </Button>
-      <Button variant="link" icon={<ExternalLinkSquareAltIcon />} iconPosition="end">
-        Link
-      </Button>
-      <Button variant="link" isInline>
-        Inline link
-      </Button>
-      <Button variant="link" isDanger>
-        Danger link
-      </Button>
-      <Button variant="plain" aria-label="Action" icon={<TimesIcon />} />
-    </Flex>
-    <br />
-    <Flex columnGap={{ default: 'columnGapSm' }}>
-      <Button variant="control">Control</Button>
-      <Button variant="control" aria-label="Copy" icon={<CopyIcon />} />
-    </Flex>
-    <br />
-    <Flex columnGap={{ default: 'columnGapSm' }}>
-      <Button variant="stateful" icon={<BellIcon />} state="read">
-        Stateful read
-      </Button>
-      <Button variant="stateful" icon={<BellIcon />} state="unread">
-        Stateful unread
-      </Button>
-      <Button variant="stateful" icon={<BellIcon />} state="attention">
-        Stateful attention
-      </Button>
-    </Flex>
+        <FormGroup role="radiogroup" isRequired fieldId="limit-width-form-radio-group" label="Choose account type">
+          <Radio name="limit-width-radio" label="Corporate" id="limit-width-inline-radio-01" description="Allows a set of users within your organization to centrally make purchases or administer systems" />
+          <br />
+          <Radio name="limit-width-radio" label="Personal" id="limit-width-inline-radio-02" description="For purchasing or administering your own personal systems" />
+        </FormGroup>
+        <ActionGroup>
+          <Button variant="primary">Create my account</Button>
+          <Button variant="link">Back to login page</Button>
+        </ActionGroup>
+        <div>
+          <Banner>Default banner</Banner>
+          <br />
+          <Banner color="red">Red banner</Banner>
+          <br />
+          {/* <Banner color="orangered">Orangered banner</Banner> */}
+          {/* <Banner color="orange">Orange banner</Banner> */}
+          <Banner color="yellow">Yellow banner</Banner>
+          <br />
+          <Banner color="green">Green banner</Banner>
+          <br />
+          {/* <Banner color="teal">Teal banner</Banner> */}
+          <Banner color="blue">Blue banner</Banner>
+          <br />
+          {/* <Banner color="purple">Purple banner</Banner> */}
+        </div>
 
-    <Divider
-      inset={{
-        default: 'insetMd',
-        md: 'insetNone',
-        lg: 'inset3xl',
-        xl: 'insetLg'
-      }}
-    />
-    <Button>
-        Toggle drawer
-      </Button>
-      <DualListSelector>
-      <DualListSelectorPane
-        title="Available options"
-        status={`${availableOptions.filter((option) => option.selected && option.isVisible).length} of ${
-          availableOptions.filter((option) => option.isVisible).length
-        } options selected`}
-      >
-        <DualListSelectorList>
-          {availableOptions.map((option, index) =>
-            option.isVisible ? (
-              <DualListSelectorListItem
-                key={index}
-                isSelected={option.selected}
-                id={`basic-available-option-${index}`}
-                onOptionSelect={(e) => onOptionSelect(e, index, false)}
-              >
-                {option.text}
-              </DualListSelectorListItem>
-            ) : null
-          )}
-        </DualListSelectorList>
-      </DualListSelectorPane>
-      <DualListSelectorControlsWrapper>
-        <DualListSelectorControl
-          isDisabled={!availableOptions.some((option) => option.selected)}
-          onClick={() => moveSelected(true)}
-          aria-label="Add selected"
-          icon={<AngleRightIcon />}
+        <Flex columnGap={{ default: 'columnGapSm' }}>
+          <Button variant="primary" ouiaId="Primary">
+            Primary
+          </Button>
+          <Button variant="secondary" ouiaId="Secondary">
+            Secondary
+          </Button>
+          <Button variant="secondary" ouiaId="DangerSecondary" isDanger>
+            Danger Secondary
+          </Button>
+          <Button variant="tertiary" ouiaId="Tertiary">
+            Tertiary
+          </Button>
+          <Button variant="danger" ouiaId="Danger">
+            Danger
+          </Button>
+          <Button variant="warning" ouiaId="Warning">
+            Warning
+          </Button>
+        </Flex>
+        <br />
+        <Flex columnGap={{ default: 'columnGapSm' }}>
+          <Button variant="link" icon={<PlusCircleIcon />}>
+            Link
+          </Button>
+          <Button variant="link" icon={<ExternalLinkSquareAltIcon />} iconPosition="end">
+            Link
+          </Button>
+          <Button variant="link" isInline>
+            Inline link
+          </Button>
+          <Button variant="link" isDanger>
+            Danger link
+          </Button>
+          <Button variant="plain" aria-label="Action" icon={<TimesIcon />} />
+        </Flex>
+        <br />
+        <Flex columnGap={{ default: 'columnGapSm' }}>
+          <Button variant="control">Control</Button>
+          <Button variant="control" aria-label="Copy" icon={<CopyIcon />} />
+        </Flex>
+        <br />
+        <Flex columnGap={{ default: 'columnGapSm' }}>
+          <Button variant="stateful" icon={<BellIcon />} state="read">
+            Stateful read
+          </Button>
+          <Button variant="stateful" icon={<BellIcon />} state="unread">
+            Stateful unread
+          </Button>
+          <Button variant="stateful" icon={<BellIcon />} state="attention">
+            Stateful attention
+          </Button>
+        </Flex>
+
+        <Divider
+          inset={{
+            default: 'insetMd',
+            md: 'insetNone',
+            lg: 'inset3xl',
+            xl: 'insetLg'
+          }}
         />
-        <DualListSelectorControl
-          isDisabled={availableOptions.length === 0}
-          onClick={() => moveAll(true)}
-          aria-label="Add all"
-          icon={<AngleDoubleRightIcon />}
-        />
-        <DualListSelectorControl
-          isDisabled={chosenOptions.length === 0}
-          onClick={() => moveAll(false)}
-          aria-label="Remove all"
-          icon={<AngleDoubleLeftIcon />}
-        />
-        <DualListSelectorControl
-          onClick={() => moveSelected(false)}
-          isDisabled={!chosenOptions.some((option) => option.selected)}
-          aria-label="Remove selected"
-          icon={<AngleLeftIcon />}
-        />
-      </DualListSelectorControlsWrapper>
-      <DualListSelectorPane
-        title="Chosen options"
-        status={`${chosenOptions.filter((option) => option.selected && option.isVisible).length} of ${
-          chosenOptions.filter((option) => option.isVisible).length
-        } options selected`}
-        isChosen
-      >
-        <DualListSelectorList>
-          {chosenOptions.map((option, index) =>
-            option.isVisible ? (
-              <DualListSelectorListItem
-                key={index}
-                isSelected={option.selected}
-                id={`composable-basic-chosen-option-${index}`}
-                onOptionSelect={(e) => onOptionSelect(e, index, true)}
-              >
-                {option.text}
-              </DualListSelectorListItem>
-            ) : null
-          )}
-        </DualListSelectorList>
-      </DualListSelectorPane>
-    </DualListSelector>
-    <MultipleFileUpload
-        onFileDrop={handleFileDrop}
-        dropzoneProps={{
-          accept: {
-            'image/jpeg': ['.jpg', '.jpeg'],
-            'application/msword': ['.doc'],
-            'application/pdf': ['.pdf'],
-            'image/png': ['.png']
-          }
-        }}
-        isHorizontal={isHorizontal}
-      >
-        <MultipleFileUploadMain
-          titleIcon={<UploadIcon />}
-          titleText="Drag and drop files here"
-          titleTextSeparator="or"
-          infoText="Accepted file types: JPEG, Doc, PDF, PNG"
-        />
-        {showStatus && (
-          <MultipleFileUploadStatus
-            statusToggleText={`${successfullyReadFileCount} of ${currentFiles.length} files uploaded`}
-            statusToggleIcon={statusIcon}
-            aria-label="Current uploads"
+        <Button>
+          Toggle drawer
+        </Button>
+        <DualListSelector>
+          <DualListSelectorPane
+            title="Available options"
+            status={`${availableOptions.filter((option) => option.selected && option.isVisible).length} of ${availableOptions.filter((option) => option.isVisible).length
+              } options selected`}
           >
-            {currentFiles.map((file) => (
-              <MultipleFileUploadStatusItem
-                file={file}
-                key={file.name}
-                onClearClick={() => removeFiles([file.name])}
-                onReadSuccess={handleReadSuccess}
-                onReadFail={handleReadFail}
-                progressHelperText={createHelperText(file)}
-              />
-            ))}
-          </MultipleFileUploadStatus>
-        )}
-      </MultipleFileUpload>
+            <DualListSelectorList>
+              {availableOptions.map((option, index) =>
+                option.isVisible ? (
+                  <DualListSelectorListItem
+                    key={index}
+                    isSelected={option.selected}
+                    id={`basic-available-option-${index}`}
+                    onOptionSelect={(e) => onOptionSelect(e, index, false)}
+                  >
+                    {option.text}
+                  </DualListSelectorListItem>
+                ) : null
+              )}
+            </DualListSelectorList>
+          </DualListSelectorPane>
+          <DualListSelectorControlsWrapper>
+            <DualListSelectorControl
+              isDisabled={!availableOptions.some((option) => option.selected)}
+              onClick={() => moveSelected(true)}
+              aria-label="Add selected"
+              icon={<AngleRightIcon />}
+            />
+            <DualListSelectorControl
+              isDisabled={availableOptions.length === 0}
+              onClick={() => moveAll(true)}
+              aria-label="Add all"
+              icon={<AngleDoubleRightIcon />}
+            />
+            <DualListSelectorControl
+              isDisabled={chosenOptions.length === 0}
+              onClick={() => moveAll(false)}
+              aria-label="Remove all"
+              icon={<AngleDoubleLeftIcon />}
+            />
+            <DualListSelectorControl
+              onClick={() => moveSelected(false)}
+              isDisabled={!chosenOptions.some((option) => option.selected)}
+              aria-label="Remove selected"
+              icon={<AngleLeftIcon />}
+            />
+          </DualListSelectorControlsWrapper>
+          <DualListSelectorPane
+            title="Chosen options"
+            status={`${chosenOptions.filter((option) => option.selected && option.isVisible).length} of ${chosenOptions.filter((option) => option.isVisible).length
+              } options selected`}
+            isChosen
+          >
+            <DualListSelectorList>
+              {chosenOptions.map((option, index) =>
+                option.isVisible ? (
+                  <DualListSelectorListItem
+                    key={index}
+                    isSelected={option.selected}
+                    id={`composable-basic-chosen-option-${index}`}
+                    onOptionSelect={(e) => onOptionSelect(e, index, true)}
+                  >
+                    {option.text}
+                  </DualListSelectorListItem>
+                ) : null
+              )}
+            </DualListSelectorList>
+          </DualListSelectorPane>
+        </DualListSelector>
+        <MultipleFileUpload
+          onFileDrop={handleFileDrop}
+          dropzoneProps={{
+            accept: {
+              'image/jpeg': ['.jpg', '.jpeg'],
+              'application/msword': ['.doc'],
+              'application/pdf': ['.pdf'],
+              'image/png': ['.png']
+            }
+          }}
+          isHorizontal={isHorizontal}
+        >
+          <MultipleFileUploadMain
+            titleIcon={<UploadIcon />}
+            titleText="Drag and drop files here"
+            titleTextSeparator="or"
+            infoText="Accepted file types: JPEG, Doc, PDF, PNG"
+          />
+          {showStatus && (
+            <MultipleFileUploadStatus
+              statusToggleText={`${successfullyReadFileCount} of ${currentFiles.length} files uploaded`}
+              statusToggleIcon={statusIcon}
+              aria-label="Current uploads"
+            >
+              {currentFiles.map((file) => (
+                <MultipleFileUploadStatusItem
+                  file={file}
+                  key={file.name}
+                  onClearClick={() => removeFiles([file.name])}
+                  onReadSuccess={handleReadSuccess}
+                  onReadFail={handleReadFail}
+                  progressHelperText={createHelperText(file)}
+                />
+              ))}
+            </MultipleFileUploadStatus>
+          )}
+        </MultipleFileUpload>
 
-      <FileUpload
-      id="text-file-simple"
-      type="text"
-      value={value}
-      filename={filename}
-      filenamePlaceholder="Drag and drop a file or upload one"
-      onFileInputChange={handleFileInputChange}
-      onDataChange={handleDataChange}
-      onTextChange={handleTextChange}
-      onReadStarted={handleFileReadStarted}
-      onReadFinished={handleFileReadFinished}
-      onClearClick={handleClear}
-      isLoading={isLoading}
-      allowEditingUploadedText={false}
-      browseButtonText="Upload"
-    />
-    </Form>
-    <span className="pf-v6-c-form-control pf-m-success">
-  <input
-    type="text"
-    value="Success"
-    id="input-success"
-    aria-label="Success state input example"
-  />
-  <span className="pf-v6-c-form-control__utilities">
-    <span className="pf-v6-c-form-control__icon pf-m-status">
-      <i className="fas fa-check-circle" aria-hidden="true"></i>
-    </span>
-  </span>
-</span>
-<br></br>
-<span className="pf-v6-c-form-control pf-m-placeholder">
-  <select
-    id="select-selectable-placeholder"
-    name="select-selectable-placeholder"
-    aria-label="Selectable placeholder select example"
-  >
-    <option  selected>Selectable placeholder</option>
-    <option value="Mr">Mr</option>
-    <option value="Miss">Miss</option>
-    <option value="Mrs">Mrs</option>
-    <option value="Ms">Ms</option>
-    <option value="Dr">Dr</option>
-    <option value="Dr" disabled>Disabled option</option>
-    <option value="Other">Other</option>
-  </select>
-  <span className="pf-v6-c-form-control__utilities">
-    <span className="pf-v6-c-form-control__toggle-icon">
-      <i className="fas fa-caret-down" aria-hidden="true"></i>
-    </span>
-  </span>
-</span>
-<br></br>
-<FormSelect value={formSelectValue} onChange={onChange} aria-label="FormSelect Input" ouiaId="BasicFormSelect">
-      {options.map((option, index) => (
-        <FormSelectOption isDisabled={option.disabled} key={index} value={option.value} label={option.label} />
-      ))}
-    </FormSelect>
-    <br></br>
-    <TextArea
-      value={value}
-      onChange={(_event, value) => setValue(value)}
-      resizeOrientation="vertical"
-      aria-label="text area vertical resize example"
-    />
-    <br></br>
-    <TextArea
-      value={value}
-      onChange={(_event, value) => setValue(value)}
-      isRequired
-      validated={'error'}
-      aria-label="invalid text area example"
-    />
-    <br></br>
-    <TextInput
-      value={value}
-      onChange={(_event, value) => setValue(value)}
-      isRequired
-      validated={ValidatedOptions.error}
-      type="text"
-      aria-label="invalid text input example"
-    />
-    <br></br>
-    <br></br>
-     <Banner screenReaderText="Success banner" status="success">
-      <Flex spaceItems={{ default: 'spaceItemsSm' }}>
-        <FlexItem>
-          <CheckCircleIcon />
-        </FlexItem>
-        <FlexItem>Success banner</FlexItem>
-      </Flex>
-    </Banner>
-    <br />
-    <Banner screenReaderText="Warning banner" status="warning">
-      <Flex spaceItems={{ default: 'spaceItemsSm' }}>
-        <FlexItem>
-          <ExclamationTriangleIcon />
-        </FlexItem>
-        <FlexItem>Warning banner</FlexItem>
-      </Flex>
-    </Banner>
-    <br />
-    <Banner screenReaderText="Danger banner" status="danger">
-      <Flex spaceItems={{ default: 'spaceItemsSm' }}>
-        <FlexItem>
-          <ExclamationCircleIcon />
-        </FlexItem>
-        <FlexItem>Danger banner</FlexItem>
-      </Flex>
-    </Banner>
-    <br />
-    <Banner screenReaderText="Info banner" status="info">
-      <Flex spaceItems={{ default: 'spaceItemsSm' }}>
-        <FlexItem>
-          <InfoCircleIcon />
-        </FlexItem>
-        <FlexItem>Info banner</FlexItem>
-      </Flex>
-    </Banner>
-    <br />
-    <Banner screenReaderText="Custom banner" status="custom">
-      <Flex spaceItems={{ default: 'spaceItemsSm' }}>
-        <FlexItem>
-          <BellIcon />
-        </FlexItem>
-        <FlexItem>Custom banner</FlexItem>
-      </Flex>
-    </Banner>
-    <br></br>
-    <br></br>
-    <Hint>
+        <FileUpload
+          id="text-file-simple"
+          type="text"
+          value={value}
+          filename={filename}
+          filenamePlaceholder="Drag and drop a file or upload one"
+          onFileInputChange={handleFileInputChange}
+          onDataChange={handleDataChange}
+          onTextChange={handleTextChange}
+          onReadStarted={handleFileReadStarted}
+          onReadFinished={handleFileReadFinished}
+          onClearClick={handleClear}
+          isLoading={isLoading}
+          allowEditingUploadedText={false}
+          browseButtonText="Upload"
+        />
+      </Form>
+      <span className="pf-v6-c-form-control pf-m-success">
+        <input
+          type="text"
+          value="Success"
+          id="input-success"
+          aria-label="Success state input example"
+        />
+        <span className="pf-v6-c-form-control__utilities">
+          <span className="pf-v6-c-form-control__icon pf-m-status">
+            <i className="fas fa-check-circle" aria-hidden="true"></i>
+          </span>
+        </span>
+      </span>
+      <br></br>
+      <span className="pf-v6-c-form-control pf-m-placeholder">
+        <select
+          id="select-selectable-placeholder"
+          name="select-selectable-placeholder"
+          aria-label="Selectable placeholder select example"
+        >
+          <option selected>Selectable placeholder</option>
+          <option value="Mr">Mr</option>
+          <option value="Miss">Miss</option>
+          <option value="Mrs">Mrs</option>
+          <option value="Ms">Ms</option>
+          <option value="Dr">Dr</option>
+          <option value="Dr" disabled>Disabled option</option>
+          <option value="Other">Other</option>
+        </select>
+        <span className="pf-v6-c-form-control__utilities">
+          <span className="pf-v6-c-form-control__toggle-icon">
+            <i className="fas fa-caret-down" aria-hidden="true"></i>
+          </span>
+        </span>
+      </span>
+      <br></br>
+      <FormSelect value={formSelectValue} onChange={onChange} aria-label="FormSelect Input" ouiaId="BasicFormSelect">
+        {options.map((option, index) => (
+          <FormSelectOption isDisabled={option.disabled} key={index} value={option.value} label={option.label} />
+        ))}
+      </FormSelect>
+      <br></br>
+      <TextArea
+        value={value}
+        onChange={(_event, value) => setValue(value)}
+        resizeOrientation="vertical"
+        aria-label="text area vertical resize example"
+      />
+      <br></br>
+      <TextArea
+        value={value}
+        onChange={(_event, value) => setValue(value)}
+        isRequired
+        validated={'error'}
+        aria-label="invalid text area example"
+      />
+      <br></br>
+      <TextInput
+        value={value}
+        onChange={(_event, value) => setValue(value)}
+        isRequired
+        validated={ValidatedOptions.error}
+        type="text"
+        aria-label="invalid text input example"
+      />
+      <br></br>
+      <br></br>
+      <Banner screenReaderText="Success banner" status="success">
+        <Flex spaceItems={{ default: 'spaceItemsSm' }}>
+          <FlexItem>
+            <CheckCircleIcon />
+          </FlexItem>
+          <FlexItem>Success banner</FlexItem>
+        </Flex>
+      </Banner>
+      <br />
+      <Banner screenReaderText="Warning banner" status="warning">
+        <Flex spaceItems={{ default: 'spaceItemsSm' }}>
+          <FlexItem>
+            <ExclamationTriangleIcon />
+          </FlexItem>
+          <FlexItem>Warning banner</FlexItem>
+        </Flex>
+      </Banner>
+      <br />
+      <Banner screenReaderText="Danger banner" status="danger">
+        <Flex spaceItems={{ default: 'spaceItemsSm' }}>
+          <FlexItem>
+            <ExclamationCircleIcon />
+          </FlexItem>
+          <FlexItem>Danger banner</FlexItem>
+        </Flex>
+      </Banner>
+      <br />
+      <Banner screenReaderText="Info banner" status="info">
+        <Flex spaceItems={{ default: 'spaceItemsSm' }}>
+          <FlexItem>
+            <InfoCircleIcon />
+          </FlexItem>
+          <FlexItem>Info banner</FlexItem>
+        </Flex>
+      </Banner>
+      <br />
+      <Banner screenReaderText="Custom banner" status="custom">
+        <Flex spaceItems={{ default: 'spaceItemsSm' }}>
+          <FlexItem>
+            <BellIcon />
+          </FlexItem>
+          <FlexItem>Custom banner</FlexItem>
+        </Flex>
+      </Banner>
+      <br></br>
+      <br></br>
+      <Hint>
         <HintBody>
           Welcome to the new documentation experience.
           <Button variant="link" isInline>
@@ -1345,25 +1401,25 @@ const PfForm: React.FunctionComponent = () => {
         <Label>Label that overflows its parent, but has no textMaxWidth on its own</Label>
       </div>
       <br />
-      <Nav  aria-label="Default global" ouiaId="DefaultNav">
-      <NavList>
-        <NavItem preventDefault id="nav-default-link1" to="#nav-default-link1" itemId={0} isActive={activeItem === 0}>
-          Default Link 1
-        </NavItem>
-        <NavItem preventDefault id="nav-default-link2" to="#nav-default-link2" itemId={1} isActive={activeItem === 1}>
-          Default Link 2
-        </NavItem>
-        <NavItem preventDefault id="nav-default-link3" to="#nav-default-link3" itemId={2} isActive={activeItem === 2}>
-          Default Link 3
-        </NavItem>
-        <NavItem preventDefault id="nav-default-link4" to="#nav-default-link4" itemId={3} isActive={activeItem === 3}>
-          Default Link 4
-        </NavItem>
-      </NavList>
-    </Nav>
-    <br></br>
-    <br></br>
-    <NotificationBadge
+      <Nav aria-label="Default global" ouiaId="DefaultNav">
+        <NavList>
+          <NavItem preventDefault id="nav-default-link1" to="#nav-default-link1" itemId={0} isActive={activeItem === 0}>
+            Default Link 1
+          </NavItem>
+          <NavItem preventDefault id="nav-default-link2" to="#nav-default-link2" itemId={1} isActive={activeItem === 1}>
+            Default Link 2
+          </NavItem>
+          <NavItem preventDefault id="nav-default-link3" to="#nav-default-link3" itemId={2} isActive={activeItem === 2}>
+            Default Link 3
+          </NavItem>
+          <NavItem preventDefault id="nav-default-link4" to="#nav-default-link4" itemId={3} isActive={activeItem === 3}>
+            Default Link 4
+          </NavItem>
+        </NavList>
+      </Nav>
+      <br></br>
+      <br></br>
+      <NotificationBadge
         variant={NotificationBadgeVariant.read}
         onClick={onReadClick}
         aria-label="Basic notification badge with read variant"
@@ -1385,13 +1441,305 @@ const PfForm: React.FunctionComponent = () => {
       <br></br>
       <br></br>
       <NumberInput
-      inputName="input"
-      inputAriaLabel="number input"
-      minusBtnAriaLabel="minus"
-      plusBtnAriaLabel="plus"
-    />
+        inputName="input"
+        inputAriaLabel="number input"
+        minusBtnAriaLabel="minus"
+        plusBtnAriaLabel="plus"
+      />
+      <br></br>
+      <NotificationDrawer>
+        <NotificationDrawerHeader count={3} onClose={onDrawerClose}>
+          <Dropdown
+            onSelect={onSelect}
+            isOpen={isOpen0}
+            onOpenChange={() => setIsOpenMap(new Array(7).fill(false))}
+            popperProps={{ position: 'right' }}
+            toggle={(toggleRef: React.Ref<MenuToggleElement>) => (
+              <MenuToggle
+                ref={toggleRef}
+                isExpanded={isOpen0}
+                onClick={onToggle(0)}
+                variant="plain"
+                aria-label={`Basic example header kebab toggle`}
+                icon={<EllipsisVIcon aria-hidden="true" />}
+              />
+            )}
+          >
+            <DropdownList>{dropdownItems}</DropdownList>
+          </Dropdown>
+        </NotificationDrawerHeader>
+        <NotificationDrawerBody>
+          <NotificationDrawerList aria-label="Notifications in the basic example">
+            <NotificationDrawerListItem variant="info">
+              <NotificationDrawerListItemHeader
+                variant="info"
+                title="Unread info notification title"
+                srTitle="Info notification:"
+              >
+                <Dropdown
+                  onSelect={onSelect}
+                  isOpen={isOpen1}
+                  onOpenChange={() => setIsOpenMap(new Array(7).fill(false))}
+                  popperProps={{ position: 'right' }}
+                  toggle={(toggleRef: React.Ref<MenuToggleElement>) => (
+                    <MenuToggle
+                      ref={toggleRef}
+                      isExpanded={isOpen0}
+                      onClick={onToggle(1)}
+                      variant="plain"
+                      aria-label={`Basic example notification 1 kebab toggle`}
+                      icon={<EllipsisVIcon aria-hidden="true" />}
+                    />
+                  )}
+                >
+                  <DropdownList>{dropdownItems}</DropdownList>
+                </Dropdown>
+              </NotificationDrawerListItemHeader>
+              <NotificationDrawerListItemBody timestamp="5 minutes ago">
+                This is an info notification description.
+              </NotificationDrawerListItemBody>
+            </NotificationDrawerListItem>
+            <NotificationDrawerListItem variant="danger">
+              <NotificationDrawerListItemHeader
+                variant="danger"
+                title="Unread danger notification title. This is a long title to show how the title will wrap if it is long and wraps to multiple lines."
+                srTitle="Danger notification:"
+              >
+                <Dropdown
+                  onSelect={onSelect}
+                  isOpen={isOpen2}
+                  onOpenChange={() => setIsOpenMap(new Array(7).fill(false))}
+                  popperProps={{ position: 'right' }}
+                  toggle={(toggleRef: React.Ref<MenuToggleElement>) => (
+                    <MenuToggle
+                      ref={toggleRef}
+                      isExpanded={isOpen2}
+                      onClick={onToggle(2)}
+                      variant="plain"
+                      aria-label={`Basic example notification 2 kebab toggle`}
+                      icon={<EllipsisVIcon aria-hidden="true" />}
+                    />
+                  )}
+                >
+                  <DropdownList>{dropdownItems}</DropdownList>
+                </Dropdown>
+              </NotificationDrawerListItemHeader>
+              <NotificationDrawerListItemBody timestamp="10 minutes ago">
+                This is a danger notification description. This is a long description to show how the title will wrap if
+                it is long and wraps to multiple lines.
+              </NotificationDrawerListItemBody>
+            </NotificationDrawerListItem>
+            <NotificationDrawerListItem variant="danger">
+              <NotificationDrawerListItemHeader
+                truncateTitle={1}
+                variant="danger"
+                title="Unread danger notification title. This is a long title to show how the title will be truncated if it is long and will be shown in a single line."
+                srTitle="Danger notification:"
+              >
+                <Dropdown
+                  onSelect={onSelect}
+                  isOpen={isOpen3}
+                  onOpenChange={() => setIsOpenMap(new Array(7).fill(false))}
+                  popperProps={{ position: 'right' }}
+                  toggle={(toggleRef: React.Ref<MenuToggleElement>) => (
+                    <MenuToggle
+                      ref={toggleRef}
+                      isExpanded={isOpen3}
+                      onClick={onToggle(3)}
+                      variant="plain"
+                      aria-label={`Basic example notification 3 kebab toggle`}
+                      icon={<EllipsisVIcon aria-hidden="true" />}
+                    />
+                  )}
+                >
+                  <DropdownList>{dropdownItems}</DropdownList>
+                </Dropdown>
+              </NotificationDrawerListItemHeader>
+              <NotificationDrawerListItemBody timestamp="10 minutes ago">
+                This is a danger notification description. This is a long description to show how the title will wrap if
+                it is long and wraps to multiple lines.
+              </NotificationDrawerListItemBody>
+            </NotificationDrawerListItem>
+            <NotificationDrawerListItem variant="warning" isRead>
+              <NotificationDrawerListItemHeader
+                variant="warning"
+                title="Read warning notification title"
+                srTitle="Warning notification:"
+              >
+                <Dropdown
+                  onSelect={onSelect}
+                  isOpen={isOpen4}
+                  onOpenChange={() => setIsOpenMap(new Array(7).fill(false))}
+                  popperProps={{ position: 'right' }}
+                  toggle={(toggleRef: React.Ref<MenuToggleElement>) => (
+                    <MenuToggle
+                      ref={toggleRef}
+                      isExpanded={isOpen4}
+                      onClick={onToggle(4)}
+                      variant="plain"
+                      aria-label={`Basic example notification 4 kebab toggle`}
+                      icon={<EllipsisVIcon aria-hidden="true" />}
+                    />
+                  )}
+                >
+                  <DropdownList>{dropdownItems}</DropdownList>
+                </Dropdown>
+              </NotificationDrawerListItemHeader>
+              <NotificationDrawerListItemBody timestamp="20 minutes ago">
+                This is a warning notification description.
+              </NotificationDrawerListItemBody>
+            </NotificationDrawerListItem>
+            <NotificationDrawerListItem variant="success" isRead>
+              <NotificationDrawerListItemHeader
+                variant="success"
+                title="Read success notification title"
+                srTitle="Success notification:"
+              >
+                <Dropdown
+                  onSelect={onSelect}
+                  isOpen={isOpen5}
+                  onOpenChange={() => setIsOpenMap(new Array(7).fill(false))}
+                  popperProps={{ position: 'right' }}
+                  toggle={(toggleRef: React.Ref<MenuToggleElement>) => (
+                    <MenuToggle
+                      ref={toggleRef}
+                      isExpanded={isOpen5}
+                      onClick={onToggle(5)}
+                      variant="plain"
+                      aria-label={`Basic example notification 5 kebab toggle`}
+                      icon={<EllipsisVIcon aria-hidden="true" />}
+                    />
+                  )}
+                >
+                  <DropdownList>{dropdownItems}</DropdownList>
+                </Dropdown>
+              </NotificationDrawerListItemHeader>
+              <NotificationDrawerListItemBody timestamp="30 minutes ago">
+                This is a success notification description.
+              </NotificationDrawerListItemBody>
+            </NotificationDrawerListItem>
+            <NotificationDrawerListItem isRead>
+              <NotificationDrawerListItemHeader title="Read (default) notification title" srTitle="notification:">
+                <Dropdown
+                  onSelect={onSelect}
+                  isOpen={isOpen6}
+                  onOpenChange={() => setIsOpenMap(new Array(7).fill(false))}
+                  popperProps={{ position: 'right' }}
+                  toggle={(toggleRef: React.Ref<MenuToggleElement>) => (
+                    <MenuToggle
+                      ref={toggleRef}
+                      isExpanded={isOpen6}
+                      onClick={onToggle(6)}
+                      variant="plain"
+                      aria-label={`Basic example notification 6 kebab toggle`}
+                      icon={<EllipsisVIcon aria-hidden="true" />}
+                    />
+                  )}
+                >
+                  <DropdownList>{dropdownItems}</DropdownList>
+                </Dropdown>
+              </NotificationDrawerListItemHeader>
+              <NotificationDrawerListItemBody timestamp="35 minutes ago">
+                This is a default notification description.
+              </NotificationDrawerListItemBody>
+            </NotificationDrawerListItem>
+          </NotificationDrawerList>
+        </NotificationDrawerBody>
+      </NotificationDrawer>
+      <br></br>
+      <Wizard height={400} title="Basic wizard">
+        <WizardStep name="Step 1" id="basic-first-step">
+          <p>
+            The content of this step overflows and creates a scrollbar, which causes a tabindex of "0", a role of "region",
+            and an aria-label or aria-labelledby to be applied.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer bibendum in neque nec pharetra. Duis lacinia
+            vel sapien ut imperdiet. Nunc ultrices mollis dictum. Duis tempus, massa nec tincidunt tempor, enim ex porttitor
+            odio, eu facilisis dolor tortor id sapien. Etiam sit amet molestie lacus. Nulla facilisi. Duis eget finibus
+            ipsum. Quisque dictum enim sed sodales porta. Curabitur eget orci eu risus posuere pulvinar id nec turpis. Morbi
+            mattis orci vel posuere tincidunt. Fusce bibendum et libero a auctor.
+          </p>
+          <p>
+            Proin elementum commodo sodales. Quisque eget libero mattis, ornare augue at, egestas nisi. Mauris ultrices orci
+            fringilla pretium mattis. Aliquam erat volutpat. Sed pharetra condimentum dui, nec bibendum ante. Vestibulum
+            sollicitudin, sem accumsan pharetra molestie, purus turpis lacinia lorem, commodo sodales quam lectus a urna.
+            Nam gravida, felis a lacinia varius, ex ipsum ultrices orci, non egestas diam velit in mi. Ut sit amet commodo
+            orci. Duis sed diam odio. Duis mi metus, dignissim in odio nec, ornare aliquet libero. Sed luctus elit nibh.
+            Quisque et felis diam. Integer ac metus dolor.
+          </p>
+        </WizardStep>
+        <WizardStep name="Step 2" id="basic-second-step">
+          Step 2 content
+        </WizardStep>
+        <WizardStep name="Review" id="basic-review-step" footer={{ nextButtonText: 'Finish' }}>
+          Review step content
+        </WizardStep>
+      </Wizard>
+      <br></br>
+      <div className="truncate-example-resize">
+        <Truncate
+          content={'redhat_logo_black_and_white_reversed_simple_with_fedora_container.zip'}
+          trailingNumChars={10}
+          position={'middle'}
+        />
+      </div>
+      <br></br>
+      <div style={{ margin: '100px' }}>
+        <Tooltip
+          content={
+            <div>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id feugiat augue, nec fringilla turpis.
+            </div>
+          }
+        >
+          <Button>I have a tooltip!</Button>
+        </Tooltip>
+      </div>
+      <br></br>
+      <ToolbarItem>
+        <SearchInput aria-label="Items example search input" />
+      </ToolbarItem>
+      <ToolbarItem>
+        <Button variant="secondary">Action</Button>
+      </ToolbarItem>
+      <ToolbarItem variant="separator" />
+      <ToolbarItem>
+        <Button variant="primary">Action</Button>
+      </ToolbarItem>
+      <br></br>
+      <ToggleGroup aria-label="Default with single selectable">
+        <ToggleGroupItem
+          text="Option 1"
+          buttonId="toggle-group-single-1"
+          isSelected={isSelected === 'toggle-group-single-1'}
+          onChange={handleItemClick}
+        />
+        <ToggleGroupItem
+          text="Option 2"
+          buttonId="toggle-group-single-2"
+          isSelected={isSelected === 'toggle-group-single-2'}
+          onChange={handleItemClick}
+        />
+        <ToggleGroupItem
+          text="Option 3"
+          buttonId="toggle-group-single-3"
+          isSelected={isSelected === 'toggle-group-single-3'}
+          onChange={handleItemClick}
+        />
+      </ToggleGroup>
+      <br></br>
+      <div role="listbox" aria-label="Basic tiles">
+        <Tile title="Default" isSelected={false} />
+        <Tile title="Selected" isSelected />
+        <Tile title="Disabled" isDisabled isSelected={false} />
+      </div>
+      <br></br>
+      <TextInputGroup>
+        <TextInputGroupMain value={value} onChange={(_event, value) => setValue(value)} />
+      </TextInputGroup>
     </>
-    
+
   );
 };
 
