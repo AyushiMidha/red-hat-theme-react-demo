@@ -40,6 +40,7 @@
     width: 60%;
     margin: auto;
     padding-top: 8rem;
+    padding-bottom: 10rem;
     .pf-v6-c-title.pf-m-h1{
         text-align: center;
         color: #ee0000;
@@ -48,6 +49,11 @@
     section{
         padding-top: 1rem;
         padding-bottom: 5rem;
+    }
+    .pf-v6-c-card{
+        padding: 1.5rem;
+        margin: 1rem 0 5rem;
+        display: block;
     }
     .toolbar-example{
         display: flex;

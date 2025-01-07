@@ -49,7 +49,9 @@ import {
     ToolbarItem,
     ToolbarContent,
     SearchInput,
-    ToggleGroup, ToggleGroupItem,
+    ToggleGroup, 
+    ToggleGroupItem,
+    Card
 } from '@patternfly/react-core';
 import { Tile } from '@patternfly/react-core/deprecated';
 import TimesIcon from '@patternfly/react-icons/dist/esm/icons/times-icon';
@@ -542,7 +544,7 @@ const Demo1: React.FunctionComponent = () => {
             <div className='container'>
                 <Title headingLevel="h1">Red Hat Branded Theme for Patternfly 6</Title>
                 <Title headingLevel="h2">Button</Title>
-                <section>
+                <Card>
                     <Flex columnGap={{ default: 'columnGapSm' }}>
                         <Button variant="primary" ouiaId="Primary">
                             Primary
@@ -596,9 +598,9 @@ const Demo1: React.FunctionComponent = () => {
                             Stateful attention
                         </Button>
                     </Flex>
-                </section>
+                </Card>
                 <Title headingLevel="h2">Divider</Title>
-                <section>
+                <Card>
                     <Divider
                         inset={{
                             default: 'insetMd',
@@ -607,9 +609,9 @@ const Demo1: React.FunctionComponent = () => {
                             xl: 'insetLg'
                         }}
                     />
-                </section>
+                </Card>
                 <Title headingLevel="h2">Toggle Drawer</Title>
-                <section>
+                <Card>
                     <DualListSelector>
                         <DualListSelectorPane
                             title="Available options"
@@ -679,9 +681,9 @@ const Demo1: React.FunctionComponent = () => {
                             </DualListSelectorList>
                         </DualListSelectorPane>
                     </DualListSelector>
-                </section>
+                </Card>
                 <Title headingLevel="h2">Multiple File Upload</Title>
-                <section>
+                <Card>
                     <MultipleFileUpload
                         onFileDrop={handleFileDrop}
                         dropzoneProps={{
@@ -719,9 +721,9 @@ const Demo1: React.FunctionComponent = () => {
                             </MultipleFileUploadStatus>
                         )}
                     </MultipleFileUpload>
-                </section>
+                </Card>
                 <Title headingLevel="h2">Simple File Upload</Title>
-                <section>
+                <Card>
                     <FileUpload
                         id="text-file-simple"
                         type="text"
@@ -738,9 +740,9 @@ const Demo1: React.FunctionComponent = () => {
                         allowEditingUploadedText={false}
                         browseButtonText="Upload"
                     />
-                </section>
+                </Card>
                 <Title headingLevel="h2">Form Control</Title>
-                <section>
+                <Card>
                     <span className="pf-v6-c-form-control pf-m-success">
                         <input
                             type="text"
@@ -806,9 +808,9 @@ const Demo1: React.FunctionComponent = () => {
                         type="text"
                         aria-label="invalid text input example"
                     />
-                </section>
+                </Card>
                 <Title headingLevel="h2">Banner</Title>
-                <section>
+                <Card>
                     <Banner screenReaderText="Success banner" status="success">
                         <Flex spaceItems={{ default: 'spaceItemsSm' }}>
                             <FlexItem>
@@ -854,9 +856,9 @@ const Demo1: React.FunctionComponent = () => {
                         </Flex>
                     </Banner>
                     <br></br>
-                </section>
+                </Card>
                 <Title headingLevel="h2">Hint</Title>
-                <section>
+                <Card>
                     <Hint>
                         <HintBody>
                             Welcome to the new documentation experience.
@@ -865,9 +867,9 @@ const Demo1: React.FunctionComponent = () => {
                             </Button>
                         </HintBody>
                     </Hint>
-                </section>
+                </Card>
                 <Title headingLevel="h2">Label</Title>
-                <section>
+                <Card>
                     <strong>Non-status:</strong>
                     <br />
                     <br />
@@ -1200,9 +1202,9 @@ const Demo1: React.FunctionComponent = () => {
                         <Label>Label that overflows its parent, but has no textMaxWidth on its own</Label>
                     </div>
                     <br />
-                </section>
+                </Card>
                 <Title headingLevel="h2">Navigation</Title>
-                <section>
+                <Card>
                     <Nav aria-label="Default global" ouiaId="DefaultNav">
                         <NavList>
                             <NavItem preventDefault id="nav-default-link1" to="#nav-default-link1" itemId={0} isActive={activeItem === 0}>
@@ -1219,9 +1221,9 @@ const Demo1: React.FunctionComponent = () => {
                             </NavItem>
                         </NavList>
                     </Nav>
-                </section>
+                </Card>
                 <Title headingLevel="h2">Notification Badge</Title>
-                <section>
+                <Card>
                     <br></br>
                     <NotificationBadge
                         variant={NotificationBadgeVariant.read}
@@ -1242,9 +1244,9 @@ const Demo1: React.FunctionComponent = () => {
                         isExpanded={attentionExpanded}
                     />
                     <br></br>
-                </section>
+                </Card>
                 <Title headingLevel="h2">Number Input</Title>
-                <section>
+                <Card>
                     <br></br>
                     <NumberInput
                         inputName="input"
@@ -1253,9 +1255,9 @@ const Demo1: React.FunctionComponent = () => {
                         plusBtnAriaLabel="plus"
                     />
                     <br></br>
-                </section>
+                </Card>
                 <Title headingLevel="h2">Notification Drawer</Title>
-                <section>
+                <Card>
                     <NotificationDrawer>
                         <NotificationDrawerHeader count={3} onClose={onDrawerClose}>
                             <Dropdown
@@ -1455,9 +1457,9 @@ const Demo1: React.FunctionComponent = () => {
                             </NotificationDrawerList>
                         </NotificationDrawerBody>
                     </NotificationDrawer>
-                </section>
+                </Card>
                 <Title headingLevel="h2">Wizard</Title>
-                <section>
+                <Card>
                     <Wizard height={400} title="Basic wizard">
                         <WizardStep name="Step 1" id="basic-first-step">
                             <p>
@@ -1487,9 +1489,9 @@ const Demo1: React.FunctionComponent = () => {
                             Review step content
                         </WizardStep>
                     </Wizard>
-                </section>
+                </Card>
                 <Title headingLevel="h2">Truncate</Title>
-                <section>
+                <Card>
                     <div className="truncate-example-resize">
                         <Truncate
                             content={'redhat_logo_black_and_white_reversed_simple_with_fedora_container.zip'}
@@ -1497,9 +1499,9 @@ const Demo1: React.FunctionComponent = () => {
                             position={'middle'}
                         />
                     </div>
-                </section>
+                </Card>
                 <Title headingLevel="h2">Tooltip</Title>
-                <section>
+                <Card>
                     <div>
                         <Tooltip
                             content={
@@ -1511,22 +1513,24 @@ const Demo1: React.FunctionComponent = () => {
                             <Button>I have a tooltip!</Button>
                         </Tooltip>
                     </div>
-                </section>
+                </Card>
                 <Title headingLevel="h2">Toolbar</Title>
-                <section className='toolbar-example'>
-                    <ToolbarItem>
-                        <SearchInput aria-label="Items example search input" />
-                    </ToolbarItem>
-                    <ToolbarItem>
-                        <Button variant="secondary">Action</Button>
-                    </ToolbarItem>
-                    <ToolbarItem variant="separator" />
-                    <ToolbarItem>
-                        <Button variant="primary">Action</Button>
-                    </ToolbarItem>
-                </section>
+                <Card>
+                    <div className='toolbar-example'>
+                        <ToolbarItem>
+                            <SearchInput aria-label="Items example search input" />
+                        </ToolbarItem>
+                        <ToolbarItem>
+                            <Button variant="secondary">Action</Button>
+                        </ToolbarItem>
+                        <ToolbarItem variant="separator" />
+                        <ToolbarItem>
+                            <Button variant="primary">Action</Button>
+                        </ToolbarItem>
+                    </div>
+                </Card>
                 <Title headingLevel="h2">Toggle Group</Title>
-                <section>
+                <Card>
                     <ToggleGroup aria-label="Default with single selectable">
                         <ToggleGroupItem
                             text="Option 1"
@@ -1547,21 +1551,21 @@ const Demo1: React.FunctionComponent = () => {
                             onChange={handleItemClick}
                         />
                     </ToggleGroup>
-                </section>
+                </Card>
                 <Title headingLevel="h2">List Box</Title>
-                <section>
+                <Card>
                     <div role="listbox" aria-label="Basic tiles">
                         <Tile title="Default" isSelected={false} />
                         <Tile title="Selected" isSelected />
                         <Tile title="Disabled" isDisabled isSelected={false} />
                     </div>
-                </section>
+                </Card>
                 <Title headingLevel="h2">Text Input Group</Title>
-                <section>
+                <Card>
                     <TextInputGroup>
                         <TextInputGroupMain value={value} onChange={(_event, value) => setValue(value)} />
                     </TextInputGroup>
-                </section>
+                </Card>
             </div>
         </>
     );
