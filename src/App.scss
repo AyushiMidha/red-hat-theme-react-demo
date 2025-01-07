@@ -1,5 +1,60 @@
 @import "@patternfly/react-core/dist/styles/base.css";
 
-.app{
-    padding: 30px;
+.toolbar{
+    .pf-v6-c-toolbar{
+        --pf-v6-c-toolbar--BackgroundColor: black;
+        height: 72px;
+        padding-block-end: 0px;
+        padding-inline-end: 0px;
+        align-items: center;
+        display: flex;
+        padding: 0 2rem;
+        color: white;
+        font-family: Red Hat Display, RedHatDisplay, Helvetica Neue, Arial, sans-serif;
+        font-size: 20px;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        .pf-v6-c-toolbar__content-section {
+            align-items: center;
+            --pf-v6-c-toolbar__content-section--RowGap: 0px;
+            --pf-v6-c-toolbar__content-section--ColumnGap: 0px
+        }
+        .pf-v6-c-toolbar__item{
+            align-items: center;
+            justify-content: flex-start;
+        }
+        img{
+            width: auto;
+            height: 32px;
+            display: block;
+            border-right: 1px solid #cdcdcd;
+            padding-right: 1rem;
+            margin-right: 1rem;
+        }
+    }
+}
+.container{
+    width: 60%;
+    margin: auto;
+    padding-top: 8rem;
+    .pf-v6-c-title.pf-m-h1{
+        text-align: center;
+        color: #ee0000;
+        margin-bottom: 3rem;
+    }
+    section{
+        padding-top: 1rem;
+        padding-bottom: 5rem;
+    }
+    .toolbar-example{
+        display: flex;
+        max-width: 450px;
+        justify-content: space-between;
+    }
+    .pf-v6-c-title.pf-m-h2{
+        color: #151515;
+    }
 }

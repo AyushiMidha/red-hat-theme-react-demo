@@ -2,6 +2,8 @@ import { Card, CardTitle, Page,Title } from "@patternfly/react-core";
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import PfForm from "../../components/Form/Form";
+import Demo1 from '../../components/demo/demo1';
+
 
 
 const allComponents = [
@@ -29,7 +31,7 @@ const allComponents = [
 
 const HomePage:FC=()=>{
     return (<>
-        <PfForm></PfForm>
+        <Demo1></Demo1>
     </>)
 }
 
