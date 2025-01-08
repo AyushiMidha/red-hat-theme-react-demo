@@ -70,6 +70,7 @@ import ExclamationTriangleIcon from '@patternfly/react-icons/dist/esm/icons/excl
 import InfoCircleIcon from '@patternfly/react-icons/dist/esm/icons/info-circle-icon';
 import CubeIcon from '@patternfly/react-icons/dist/esm/icons/cube-icon';
 import EllipsisVIcon from '@patternfly/react-icons/dist/esm/icons/ellipsis-v-icon';
+import Demo2  from './demo2';
 
 interface readFile {
     fileName: string;
@@ -1566,6 +1567,7 @@ const Demo1: React.FunctionComponent = () => {
                         <TextInputGroupMain value={value} onChange={(_event, value) => setValue(value)} />
                     </TextInputGroup>
                 </Card>
+                <Demo2></Demo2>
             </div>
         </>
     );
