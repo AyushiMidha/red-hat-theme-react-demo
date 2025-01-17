@@ -778,6 +778,15 @@
 
 .pf-v6-c-button {
   --pf-v6-c-button--BorderRadius: var(--rh-border-radius-default, 3px);
+  --pf-v6-c-button--m-control--BorderRadius: var(--rh-border-radius-sharp, 0px);
+  --pf-v6-c-button--m-control--BorderColor: transparent;
+  --pf-v6-c-button--m-tertiary--BorderColor: #151515;
+  --pf-v6-c-button--m-tertiary--Color: #151515;
+}
+
+.pf-v6-c-button.pf-m-control {
+  border: 1px solid #f0f0f0;
+  border-bottom-color: #8a8d90;
 }
 
 .pf-v6-c-multiple-file-upload {
@@ -1043,7 +1052,7 @@
 }
 
 .pf-v6-c-skeleton {
-  --pf-v6-c-popover__content--BorderRadius: var(--rh-border-radius-sharp, 0);
+  --pf-v6-c-skeleton--BorderRadius: var(--rh-border-radius-sharp, 0);
 }
 
 .pf-v6-c-modal-box {
@@ -1057,3 +1066,4 @@
   --pf-t--global--background--color--action--plain--default: var(--rh-color-surface-lightest, #ffffff);
   --pf-t--global--border--radius--400: var(--rh-border-radius-default, 0px);
 }
+

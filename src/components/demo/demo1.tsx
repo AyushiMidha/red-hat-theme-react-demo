@@ -54,10 +54,6 @@ import {
     Card
 } from '@patternfly/react-core';
 import { Tile } from '@patternfly/react-core/deprecated';
-import TimesIcon from '@patternfly/react-icons/dist/esm/icons/times-icon';
-import PlusCircleIcon from '@patternfly/react-icons/dist/esm/icons/plus-circle-icon';
-import ExternalLinkSquareAltIcon from '@patternfly/react-icons/dist/esm/icons/external-link-square-alt-icon';
-import CopyIcon from '@patternfly/react-icons/dist/esm/icons/copy-icon';
 import BellIcon from '@patternfly/react-icons/dist/esm/icons/bell-icon';
 import AngleDoubleLeftIcon from '@patternfly/react-icons/dist/esm/icons/angle-double-left-icon';
 import AngleLeftIcon from '@patternfly/react-icons/dist/esm/icons/angle-left-icon';
@@ -71,6 +67,7 @@ import InfoCircleIcon from '@patternfly/react-icons/dist/esm/icons/info-circle-i
 import CubeIcon from '@patternfly/react-icons/dist/esm/icons/cube-icon';
 import EllipsisVIcon from '@patternfly/react-icons/dist/esm/icons/ellipsis-v-icon';
 import Demo2  from './demo2';
+import PfButton from '../Button/Button';
 
 interface readFile {
     fileName: string;
@@ -544,62 +541,7 @@ const Demo1: React.FunctionComponent = () => {
             </div>
             <div className='container'>
                 <Title headingLevel="h1">Red Hat Branded Theme for Patternfly 6</Title>
-                <Title headingLevel="h2">Button</Title>
-                <Card>
-                    <Flex columnGap={{ default: 'columnGapSm' }}>
-                        <Button variant="primary" ouiaId="Primary">
-                            Primary
-                        </Button>
-                        <Button variant="secondary" ouiaId="Secondary">
-                            Secondary
-                        </Button>
-                        <Button variant="secondary" ouiaId="DangerSecondary" isDanger>
-                            Danger Secondary
-                        </Button>
-                        <Button variant="tertiary" ouiaId="Tertiary">
-                            Tertiary
-                        </Button>
-                        <Button variant="danger" ouiaId="Danger">
-                            Danger
-                        </Button>
-                        <Button variant="warning" ouiaId="Warning">
-                            Warning
-                        </Button>
-                    </Flex>
-                    <br />
-                    <Flex columnGap={{ default: 'columnGapSm' }}>
-                        <Button variant="link" icon={<PlusCircleIcon />}>
-                            Link
-                        </Button>
-                        <Button variant="link" icon={<ExternalLinkSquareAltIcon />} iconPosition="end">
-                            Link
-                        </Button>
-                        <Button variant="link" isInline>
-                            Inline link
-                        </Button>
-                        <Button variant="link" isDanger>
-                            Danger link
-                        </Button>
-                        <Button variant="plain" aria-label="Action" icon={<TimesIcon />} />
-                    </Flex>
-                    <br />
-                    <Flex columnGap={{ default: 'columnGapSm' }}>
-                        <Button variant="control">Control</Button>
-                        <Button variant="control" aria-label="Copy" icon={<CopyIcon />} />
-                    </Flex>
-                    <br />
-                    <Flex columnGap={{ default: 'columnGapSm' }}>
-                        <Button variant="stateful" icon={<BellIcon />} state="read">
-                            Stateful read
-                        </Button>
-                        <Button variant="stateful" icon={<BellIcon />} state="unread">
-                            Stateful unread
-                        </Button>
-                        <Button variant="stateful" icon={<BellIcon />} state="attention">
-                            Stateful attention
-                        </Button>
-                    </Flex>
-                </Card>
+                <PfButton></PfButton>
                 <Title headingLevel="h2">Divider</Title>
                 <Card>
                     <Divider

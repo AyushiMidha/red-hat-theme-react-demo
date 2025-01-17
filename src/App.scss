@@ -48,7 +48,7 @@
     }
     section{
         padding-top: 1rem;
-        padding-bottom: 5rem;
+        padding-bottom: 2rem;
     }
     .pf-v6-c-card{
         padding: 1.5rem;
@@ -62,5 +62,8 @@
     }
     .pf-v6-c-title.pf-m-h2{
         color: #151515;
+    }
+    .pf-v6-c-title.pf-m-h3 {
+        padding-bottom: 0.5rem;
     }
 }
